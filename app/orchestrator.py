@@ -1,120 +1,106 @@
-from typing import List, Dict, Any
-from datetime import datetime, timedelta
-
+from typing import Dict, Any, List
 import sys
 import os
+import json
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from agents.agent_chercheur import AgentChercheur
-from agents.agent_analyste import AgentAnalyste, AgentApprentissage
-from agents.agent_redacteur import AgentRedacteur
-from agents.agent_planificateur import AgentPlanificateur, AgentObjectif
-from tools.vector_db import VectorDB
-from agents.agent_news import AgentNews
-from agents.agent_nina import AgentNina
+from agents.agent_openrouter import AgentOpenRouter
 
+# --- Définition des Outils ---
+class WebSearchTool:
+    """Un outil qui simule une recherche sur le web."""
+    def run(self, query: str) -> str:
+        """Exécute la recherche et retourne un résultat simulé."""
+        print(f"--- TOOL: WebSearchTool, QUERY: '{query}' ---")
+        return f"Résultats de recherche simulés pour '{query}': [Donnée 1, Donnée 2, Donnée 3]"
 
+# --- Orchestrateur ReAct ---
 class Orchestrator:
-    """Orchestre la collaboration entre les différents agents de Nina.
+    """Orchestre une tâche complexe en utilisant un raisonnement ReAct."""
 
-    Pipeline par défaut :
-        1. Le *chercheur* collecte les données.
-        2. L'*analyste* extrait des insights.
-        3. L'*apprenant* ingère les données pour améliorer les futures recommandations.
-        4. Le *planificateur* décide d'actions éventuelles.
-        5. Le *rédacteur* produit une réponse lisible pour l'utilisateur.
-    """
+    MAX_ITERATIONS = 5
 
-    def __init__(self):
-        # Agent Nina principal (nouveau!)
-        self.nina = AgentNina()
-        
-        # Agents spécialisés (legacy - gardés pour compatibilité)
-        self.chercheur = AgentChercheur()
-        self.analyste = AgentAnalyste()
-        self.apprenant = AgentApprentissage()
-        self.planificateur = AgentPlanificateur()
-        self.objectif = AgentObjectif("Amélioration continue")
-        self.redacteur = AgentRedacteur()
-        self.vectordb = VectorDB()
-        self.news_agent = AgentNews()
+    def __init__(self, openrouter_api_key: str):
+        """Initialise l'orchestrateur avec le moteur LLM et les outils."""
+        self.llm = AgentOpenRouter(api_key=openrouter_api_key)
+        self.tools = {
+            "web_search": WebSearchTool()
+        }
 
-    # ---------------------------------------------------------------------
-    # API publique
-    # ---------------------------------------------------------------------
-    def orchestrate(self, requete: str) -> str:
+    def _build_react_prompt(self, task: str, history: List[str]) -> List[Dict[str, str]]:
+        """Construit le prompt pour le LLM en incluant l'historique de la boucle ReAct."""
+        system_prompt = f"""
+        Vous êtes un assistant capable de décomposer une tâche complexe en utilisant une boucle Pensée-Action-Observation.
+
+        Votre but est d'accomplir la tâche demandée par l'utilisateur en utilisant les outils à votre disposition.
+
+        A chaque étape, vous devez retourner un bloc JSON contenant soit une 'pensée' et une 'action', soit une 'pensée' et une 'réponse finale'.
+
+        1.  **Action**: Pour utiliser un outil. Le format doit être:
+            `{{"thought": "votre réflexion sur ce que vous allez faire", "action": {{"tool_name": "nom_de_l_outil", "query": "votre_requête"}}}}`
+
+        2.  **Réponse Finale**: Lorsque vous avez assez d'information pour répondre. Le format doit être:
+            `{{"thought": "votre réflexion finale", "finish": "votre_réponse_complète_à_l_utilisateur"}}`
+
+        **Outils disponibles**:
+        - `web_search`: Utile pour trouver des informations récentes sur un sujet. Prend un `query` en paramètre.
+
+        Commencez !
         """
-        🤖 Nouvelle orchestration intelligente avec Agent Nina !
+        messages = [{"role": "system", "content": system_prompt}]
+        history_str = "\n".join(history)
         
-        Nina analyse la requête et décide intelligemment de la stratégie optimale.
-        """
-        print("[Orchestrator] 🚀 Lancement de Nina v2.0...")
+        # Le contexte est construit en ajoutant la tâche initiale et l'historique des actions/observations
+        user_content = f"Tâche à accomplir: {task}\n\nVoici l'historique des étapes précédentes:\n{history_str}\n\nQuelle est votre prochaine action ou votre réponse finale ? Répondez uniquement avec un bloc JSON."
         
-        # 🤖 Nina prend le contrôle !
-        try:
-            response = self.nina.think_and_respond(requete)
-            print("[Orchestrator] ✅ Nina a terminé avec succès.")
-            return response
+        messages.append({"role": "user", "content": user_content})
+        return messages
+
+    def run(self, task: str) -> str:
+        """Exécute la boucle ReAct pour accomplir une tâche."""
+        history = []
+        for i in range(self.MAX_ITERATIONS):
+            print(f"\n--- Itération {i+1}/{self.MAX_ITERATIONS} ---")
+
+            # 1. Reason
+            messages = self._build_react_prompt(task, history)
+            llm_response_str = self.llm.invoke("anthropic/claude-3-haiku", messages, temperature=0.1)
             
-        except Exception as e:
-            print(f"[Orchestrator] ⚠️ Nina a rencontré un problème, fallback vers l'ancien système...")
-            print(f"[Orchestrator] Erreur Nina: {e}")
-            
-            # Fallback vers l'ancien pipeline (pour compatibilité)
-            return self._legacy_orchestrate(requete)
-    
-    def _legacy_orchestrate(self, requete: str) -> str:
-        """Pipeline legacy pour compatibilité."""
-        print("[Orchestrator] 🔄 Mode compatibilité activé...")
-
-        # Étape 1 – Collecte des données
-        raw_data: List[str] = self.chercheur.collect_data("web", requete)
-        if not raw_data:
-            raw_data = [f"Exemple de résultat pour '{requete}' n°{i}" for i in range(1, 4)]
-
-        # Étape 2 – Analyse
-        insights: Dict[str, Any] = self.analyste.analyze_data(raw_data)
-
-        # Étape 3 – Apprentissage continu
-        self.apprenant.apprendre(raw_data)
-        recommandations = self.apprenant.recommander()
-        if recommandations:
-            insights["recommandations"] = recommandations
-
-        # Étape 4 – Planification
-        self.planificateur.plan_tasks(["Envoyer rapport", "Archiver données"])
-        self.objectif.planifier()
-
-        # Étape 5 – RAG
-        self.vectordb.add_documents(raw_data)
-        passages = self.vectordb.similarity_search(requete, top_k=3)
-
-        def is_fresh(p):
-            ts = p.get("meta", {}).get("timestamp") if p else None
-            if not ts:
-                return False
             try:
-                dt = datetime.fromisoformat(ts)
-                return dt > datetime.utcnow() - timedelta(hours=24)
-            except ValueError:
-                return False
+                llm_response_json = json.loads(llm_response_str)
+                thought = llm_response_json.get("thought", "(Pas de pensée formulée)")
+                print(f"Pensée: {thought}")
+                history.append(f"Pensée: {thought}")
 
-        fresh_passages = [p for p in passages if is_fresh(p)]
+                # 2. Act
+                if "action" in llm_response_json:
+                    action = llm_response_json["action"]
+                    tool_name = action.get("tool_name")
+                    query = action.get("query")
+                    
+                    if tool_name in self.tools:
+                        observation = self.tools[tool_name].run(query)
+                        history.append(f"Observation: {observation}")
+                        print(f"Observation: {observation}")
+                    else:
+                        observation = f"Outil '{tool_name}' non trouvé."
+                        history.append(f"Observation: {observation}")
+                
+                elif "finish" in llm_response_json:
+                    final_answer = llm_response_json.get("finish")
+                    print(f"--- Tâche terminée ---")
+                    return final_answer
+                
+                else:
+                    history.append("Observation: Le JSON ne contenait ni 'action' ni 'finish'.")
 
-        if len(fresh_passages) >= 1:
-            insights["passages_similaires"] = fresh_passages
-        else:
-            news_items = self.news_agent.fetch_ai_news()
-            if news_items:
-                texts = [n["title"] for n in news_items]
-                metas = [{"timestamp": n["published"], "url": n["url"], "source": n["source"]} for n in news_items]
-                self.vectordb.add_documents(texts, metas)  # type: ignore[arg-type]
-                insights["news"] = news_items
-            else:
-                insights["passages_similaires"] = passages
+            except json.JSONDecodeError:
+                print(f"Erreur: La sortie du LLM n'est pas un JSON valide. Sortie: {llm_response_str}")
+                history.append(f"Observation: Erreur de formatage, le LLM n'a pas retourné un JSON valide.")
+            except Exception as e:
+                print(f"Une erreur inattendue est survenue: {e}")
+                history.append(f"Observation: Erreur système inattendue.")
 
-        # Étape 6 – Rédaction du rapport
-        rapport = self.redacteur.generate_report(insights)
 
-        print("[Orchestrator] ✅ Pipeline legacy terminé.")
-        return rapport 
+        return "La tâche n'a pas pu être terminée dans le nombre d'itérations imparti." 

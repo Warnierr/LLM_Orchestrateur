@@ -196,6 +196,28 @@ Catégorie:"""
             "total_sources": len(all_data)
         }
     
+    def _summarize_history(self) -> str:
+        """Crée un résumé de l'historique de conversation."""
+        if not self.local_llm or not self.conversation_history:
+            return "Aucun historique de conversation."
+
+        # Concaténer les échanges pour le prompt de résumé
+        full_history = "\n".join([f"Utilisateur: {e.get('query', '')}\nNina: {e.get('response', '')}" for e in self.conversation_history])
+
+        summary_prompt = f"""Tu es un expert en synthèse. Résume la conversation suivante en quelques points clés pour donner un contexte à un autre agent IA. Ne dépasse pas 100 mots.
+
+Conversation :
+{full_history}
+
+Résumé contextuel :"""
+
+        try:
+            summary = self.local_llm.generate(summary_prompt)
+            return summary
+        except Exception as e:
+            print(f"[AgentNina] Erreur lors du résumé de l'historique : {e}")
+            return "Le résumé de l'historique n'a pas pu être généré."
+
     def think_and_respond(self, query: str) -> str:
         """🤖 Méthode principale : Nina réfléchit et répond en suivant le plan."""
         start_time = time.time()
@@ -232,22 +254,24 @@ Raisonnement étape par étape :
                 response = f"J'ai rencontré une erreur en essayant de résoudre le problème : {e}"
         
         else: # RECHERCHE_INFORMATION
+            # Créer un résumé de l'historique pour maintenir le contexte
+            conversation_summary = self._summarize_history()
+            
             # Exécution du pipeline RAG (recherche, analyse, rédaction)
             search_results = self._execute_search_task(query)
             
-            # Enrichir les résultats avec l'historique de conversation
-            # pour donner au rédacteur un contexte complet.
+            # Enrichir les résultats avec le résumé pour le rédacteur
             context_data = {
                 "query": query,
                 "search_results": search_results,
-                "conversation_history": self.conversation_history[-5:] # On prend les 5 derniers échanges
+                "conversation_summary": conversation_summary
             }
             
             response = self._generate_data_rich_response(context_data, plan)
 
         # Mise à jour de l'historique et des stats
         self.conversation_history.append({'query': query, 'response': response})
-        self.sql_db.save_interaction(query, response)
+        self.sql_db.save_interaction(query, response, summary=conversation_summary if plan.task_type == TaskType.RECHERCHE_INFORMATION else "")
         
         end_time = time.time()
         # ... (logique de stats)

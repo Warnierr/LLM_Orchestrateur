@@ -59,10 +59,11 @@ Exemples d'utilisation :
             from app.orchestrator import Orchestrator
             print("✅ Import de l'Orchestrator réussi")
             
-            orch = Orchestrator()
+            openrouter_key = os.getenv("OPENROUTER_API_KEY", "dummy_key")
+            orch = Orchestrator(openrouter_api_key=openrouter_key)
             print("✅ Création de l'Orchestrator réussie")
             
-            result = orch.orchestrate("Test rapide de fonctionnement")
+            result = orch.run("Test rapide de fonctionnement")
             print("✅ Test d'orchestration réussi")
             print("✅ Nina fonctionne parfaitement !")
             sys.exit(0)
@@ -96,9 +97,10 @@ Exemples d'utilisation :
     if args.query:
         print(f"🤖 Nina traite votre requête : {args.query}")
         try:
-            from app.orchestrator import Orchestrator
-            orch = Orchestrator()
-            response = orch.orchestrate(args.query)
+            # On utilise AgentNina directement pour la logique locale
+            from agents.agent_nina import AgentNina
+            nina_agent = AgentNina()
+            response = nina_agent.think_and_respond(args.query)
             print(f"\n📝 Réponse :\n{response}")
         except Exception as e:
             print(f"❌ Erreur : {e}")

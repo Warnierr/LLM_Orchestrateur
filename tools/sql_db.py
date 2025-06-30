@@ -4,8 +4,16 @@ from sqlalchemy.orm import sessionmaker
 import os
 import json
 from datetime import datetime
+from typing import Optional
 
 Base = declarative_base()
+
+class Fact(Base):
+    __tablename__ = 'facts'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    content = Column(Text, nullable=False, unique=True)
+    source = Column(String(100)) # Ex: 'conversation', 'web_search', 'document'
+    timestamp = Column(DateTime, default=datetime.utcnow, index=True)
 
 class Conversation(Base):
     __tablename__ = 'conversations'
@@ -14,6 +22,7 @@ class Conversation(Base):
     user_input = Column(Text, nullable=False)
     nina_response = Column(Text, nullable=False)
     meta = Column(Text)
+    summary = Column(Text, nullable=True)
 
 class UserProfile(Base):
     __tablename__ = 'user_profiles'
@@ -26,6 +35,29 @@ class SQLDatabase:
         self.engine = create_engine(db_url, echo=False, future=True)
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind=self.engine)
+
+    def save_fact(self, content: str, source: str):
+        """Sauvegarde un nouveau fait dans la base de données, en évitant les doublons."""
+        session = self.Session()
+        try:
+            # Vérifier si le fait existe déjà
+            existing_fact = session.query(Fact).filter_by(content=content).first()
+            if not existing_fact:
+                new_fact = Fact(content=content, source=source)
+                session.add(new_fact)
+                session.commit()
+                return new_fact
+            return existing_fact
+        finally:
+            session.close()
+
+    def get_all_facts(self):
+        """Récupère tous les faits stockés dans la base de données."""
+        session = self.Session()
+        try:
+            return session.query(Fact).order_by(Fact.timestamp.desc()).all()
+        finally:
+            session.close()
 
     def load_conversations(self):
         session = self.Session()
@@ -59,18 +91,16 @@ class SQLDatabase:
         finally:
             session.close()
 
-    def save_interaction(self, user_input, nina_response, meta=None):
-        session = self.Session()
-        try:
-            conv = Conversation(
-                user_input=user_input,
+    def save_interaction(self, user_query: str, nina_response: str, summary: Optional[str] = None):
+        """Sauvegarde une interaction et son résumé dans la base de données."""
+        with self.Session() as session:
+            interaction = Conversation(
+                user_input=user_query,
                 nina_response=nina_response,
-                meta=json.dumps(meta) if meta else None
+                summary=summary
             )
-            session.add(conv)
+            session.add(interaction)
             session.commit()
-        finally:
-            session.close()
 
     def save_user_profile(self, key, value):
         session = self.Session()

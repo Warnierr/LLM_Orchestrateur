@@ -36,21 +36,21 @@ class AgentChercheurV3:
         print(f"🌐 Collecte web multi-sources pour: {query}")
         results = []
         
-        # Source 1: SerpAPI (Google Search API) - PREMIUM mais fiable
+        # Source 1: DuckDuckGo Search - GRATUIT et fiable
+        ddg_results = self._search_ddg(query)
+        if ddg_results:
+            results.extend(ddg_results)
+            print(f"   ✅ DuckDuckGo: {len(ddg_results)} résultats")
+
+        # Source 2: SerpAPI (Google Search API) - PREMIUM, utilisé en complément si dispo
         if self.serpapi_key:
             serpapi_results = self._try_serpapi(query)
             if serpapi_results:
                 results.extend(serpapi_results)
                 print(f"   ✅ SerpAPI: {len(serpapi_results)} résultats")
         
-        # Source 2: Wikipedia API - GRATUIT et fiable
-        wiki_results = self._search_wikipedia_api(query)
-        if wiki_results:
-            results.extend(wiki_results)
-            print(f"   ✅ Wikipedia: {len(wiki_results)} résultats")
-        
-        # Source 3: JSONPlaceholder + simulation réaliste - FALLBACK
-        if len(results) < 2:
+        # Source 3: Fallback si aucune recherche n'a fonctionné
+        if not results:
             fallback_results = self._intelligent_fallback(query)
             results.extend(fallback_results)
             print(f"   🧠 Fallback intelligent: {len(fallback_results)} résultats")
@@ -136,52 +136,17 @@ class AgentChercheurV3:
             print(f"   ⚠️ Erreur SerpAPI: {e}")
             return []
     
-    def _search_wikipedia_api(self, query: str) -> List[str]:
-        """Wikipedia API - Gratuit et très fiable."""
+    def _search_ddg(self, query: str, max_results: int = 3) -> List[str]:
+        """Recherche sur DuckDuckGo via la librairie duckduckgo-search."""
         try:
-            # Endpoint de l'API MediaWiki, plus stable
-            search_url = "https://fr.wikipedia.org/w/api.php"
+            from duckduckgo_search import DDGS
             
-            # 1. Recherche pour obtenir les titres de pages
-            search_params = {
-                "action": "query",
-                "list": "search",
-                "srsearch": query,
-                "format": "json",
-                "srlimit": 3
-            }
-            resp_search = self.session.get(search_url, params=search_params, timeout=10)
-            resp_search.raise_for_status()
-            search_data = resp_search.json()
-            
-            titles = [item['title'] for item in search_data.get('query', {}).get('search', [])]
-            if not titles:
-                return []
+            with DDGS() as ddgs:
+                results_list = [r for r in ddgs.text(query, max_results=max_results)]
 
-            # 2. Récupération des extraits pour les pages trouvées
-            extract_params = {
-                "action": "query",
-                "prop": "extracts",
-                "exintro": True,
-                "explaintext": True,
-                "titles": "|".join(titles),
-                "format": "json"
-            }
-            resp_extract = self.session.get(search_url, params=extract_params, timeout=10)
-            resp_extract.raise_for_status()
-            extract_data = resp_extract.json()
-
-            results = []
-            pages = extract_data.get('query', {}).get('pages', {})
-            for page_id, page_data in pages.items():
-                title = page_data.get("title")
-                extract = page_data.get("extract", "")
-                if title and extract:
-                    results.append(f"Wikipedia - {title}: {extract[:300]}...")
-            
-            return results
+            return [f"{r['title']}: {r['body']}" for r in results_list]
         except Exception as e:
-            print(f"   ⚠️ Erreur Wikipedia: {e}")
+            print(f"   ⚠️ Erreur DuckDuckGo: {e}")
             return []
     
     def _try_newsapi(self, query: str) -> List[str]:

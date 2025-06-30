@@ -1,69 +1,62 @@
-# Roadmap du projet Nina
+# Roadmap du Projet Nina
 
-## Statut actuel
+## Vision : Un Agent Autonome Intelligent
 
-- 📦 Phases 1 à 5 complétées :
-  - Fondations, CLI vLLM, mémoire vectorielle, orchestrateur multi-agents, intégration de vLLM (>=0.8.5) avec Function Calling de base.
+L'objectif est de faire de Nina un agent capable de raisonner, d'apprendre et d'agir de manière autonome pour assister l'utilisateur dans des tâches complexes.
 
-## Prochaines étapes
+---
 
-1. 🗂️ Hiérarchisation de la mémoire (MemoryManager à trois couches)
-   - Mémoire de travail (fenêtre glissante des 10–20 derniers messages)
-   - Mémoire sémantique (vectorielle / RAG)
-   - Mémoire condensée (résumés périodiques via agent Summarizer + table SQL `summaries`)
-2. 🛠️ Mémoire personnalisée (SQL + Qdrant)
-   - `tools/sql_db.py` (SQLAlchemy) + `tools/vector_db.py` (Qdrant)
-   - Configuration `DATABASE_URL` (SQLite pour POC, PostgreSQL en production)
-3. 🤖 Fiabilisation de Nina LLM
-   - Chaîne de raisonnement détaillée (chain-of-thought)
-   - Gestion robuste des appels de fonctions (fallback local/cloud)
-4. 🔍 Amélioration des embeddings & re-ranking
-   - Remplacer l'embedder maison par un modèle HF (`SentenceTransformers`, DPR…)
-   - Cross-encoder (`cross-encoder/ms-marco-MiniLM-L-6-v2`) pour filtrage des passages
-5. 📚 Intégration Agent Wikipedia via LangChain
-   - Utiliser `WikipediaAPIWrapper` ou `WikipediaQueryRun` de LangChain pour interroger l'API Wikipedia
-   - Créer `agents/agent_wikipedia.py` avec la classe `AgentWikipedia`
-   - Ajouter `agent_wikipedia` dans `configs/crew_config.yaml` et exposer via Function Calling dans `AgentNina`
-6. 🤖 Ajout Agent Grok (Salesforce)
-   - Créer `agents/agent_grok.py` avec un endpoint REST et clé API
-   - Exposer `AgentGrok` dans `configs/crew_config.yaml` sous `agents:`
-   - Ajouter la fonction `grok_query` dans `AgentNina.think_and_respond` pour les déclencheurs "grok", "Grok AI"
-7. ♻️ Auto-critique & apprentissage continu
-   - Boucle d'évaluation post-réponse, feedback utilisateur, ajustement de prompts
-   - Réentrainement incrémental selon retours
-8. 📊 Knowledge Graph d'entités
-   - Extraction NER (SpaCy, HF) et relations
-   - Stockage Neo4j / RDF + requêtes factuelles (ex. "Quels projets AI ai-je mentionnés ?")
-9. 🎼 Multi-modalité
-   - Intégration STT (Whisper) et TTS (Coqui, pyttsx3…)
-   - Support audio & images
-10. ⚙️ Orchestrateur avancé
-    - Expérimenter CrewAI vs LangChain pour workflows dynamiques
-    - Uniformiser appels de fonctions, tracing & monitoring
-11. 🔒 Sécurité & actions système
-    - Agent Shell contrôlé (sandbox)
-    - Gouvernance des permissions
-12. 📈 Scalabilité & production
-    - Qdrant en Docker / FAISS sur disque pour indices persistants
-    - Déployer PostgreSQL ou Redis pour la partie SQL
-    - CI/CD, tests d'intégration, monitoring (logs, métriques)
-    - Containerisation (Docker + Kubernetes), packaging pip
-13. 🎤 Modules audio (STT Whisper, TTS)
-14. 🌐 Interface web & observabilité (Streamlit, logging structuré)
-15. ✅ Tests & CI/CD (couverture tests, GitHub Actions)
-16. 📦 Déploiement & packaging (Docker, pip)
-17. 📚 Documentation & push Git (README, docs/, guides)
-18. 🔎 Résultats du test d'intelligence générale
+### Phase 1 : Consolidation de l'Architecture (Terminée)
+- **Fondations du projet** : CLI, structure des agents, etc.
+- **Intégration d'un LLM local** : `Mistral-7B`.
+- **Mémoire initiale** : SQL (historique) et Vectorielle (Qdrant).
+- **Orchestrateur de base** : `CrewAI` pour la collaboration d'agents.
 
-## Améliorations futures du raisonnement LLM
+---
 
-10. **Intégration de LLMs de pointe** : Tester et intégrer des modèles plus performants supportés par la configuration matérielle actuelle.
-    - **Option A (Qualité Maximale)** : `Mistral-Mixtral-8x7B-Instruct` pour une capacité de raisonnement et de synthèse supérieure.
-    - **Option B (Réactivité Maximale)** : `Meta-Llama-3-8B-Instruct` pour un équilibre parfait entre performance et vitesse.
-11. **Chaîne de Pensée (Chain-of-Thought)** : Modifier le prompt pour demander au LLM d'expliciter son raisonnement étape par étape avant de donner la réponse finale, afin d'améliorer la qualité et la fiabilité des réponses complexes.
-12. **Apprentissage par l'exemple (Few-shot Prompting)** : Pour les tâches de raisonnement, inclure dans le prompt un ou deux exemples de questions/réponses correctes pour "montrer" au LLM le format et la logique attendus.
-13. **Montée en gamme du modèle (Futur)** : Pour des capacités de raisonnement au-delà des standards actuels, envisager de passer à de futurs modèles nécessitant une infrastructure de type serveur.
+### Phase 2 : Vers une Intelligence Unifiée (En cours)
 
-## Étape suivante immédiate
+L'objectif de cette phase est de centraliser l'accès à l'intelligence et de jeter les bases d'un raisonnement avancé.
 
-- Implémenter l'étape 5 : compléter `agents/agent_llm_local.py` et `app/cli.py` pour que Nina LLM utilise pleinement l'Orchestrateur via Function Calling. 
+**Priorité #1 : Interface LLM Universelle avec OpenRouter**
+- **Action** : Remplacer les agents LLM spécifiques (`agent_grok`, `agent_llm_local`) par un `agent_openrouter.py` unique.
+- **Bénéfice** : Accès à des dizaines de modèles (Grok, Claude, GPT-4, Llama 3) via une seule API, simplifiant la maintenance et augmentant la flexibilité.
+
+**Priorité #2 : Implémentation du Framework `ReAct` (Reason + Act)**
+- **Action** : Refondre l'`Orchestrateur` pour qu'il suive une boucle de raisonnement :
+    1.  **Réflexion (Reason)** : Le LLM décompose le problème et choisit un outil (ex: recherche web).
+    2.  **Action (Act)** : L'orchestrateur exécute l'outil.
+    3.  **Observation** : Le résultat de l'action est analysé.
+    4.  La boucle continue jusqu'à la résolution du problème.
+- **Bénéfice** : Rend Nina capable de gérer des tâches complexes en plusieurs étapes, de s'auto-corriger et de montrer sa logique.
+
+**Priorité #3 : Amélioration Active de la Mémoire**
+- **Action** : Mettre en place la boucle d'apprentissage : `Rappeler -> Agir -> Consolider`.
+- **Rappeler** : Avant chaque action, Nina consulte ses mémoires SQL et Vectorielle pour contextualiser la demande.
+- **Consolider** : Après chaque tâche complexe, un agent extrait les "faits" importants du résultat et les sauvegarde dans la mémoire SQL et Vectorielle (via la nouvelle table `facts`).
+- **Bénéfice** : Nina apprend continuellement de ses interactions et de ses recherches.
+
+---
+
+### Phase 3 : Capacités Avancées et Autonomie
+
+Une fois la Phase 2 terminée, nous nous concentrerons sur l'enrichissement de l'intelligence de Nina.
+
+- **Knowledge Graph d'Entités** :
+    - **Action** : Mettre en place une base de données graphe (ex: Neo4j) et un processus pour extraire les entités (personnes, lieux, projets) et leurs relations à partir des faits appris.
+    - **Bénéfice** : Permet à Nina de faire des déductions complexes en naviguant les relations entre les concepts qu'elle connaît.
+
+- **Planification Stratégique (Tree of Thoughts - ToT)** :
+    - **Action** : Faire évoluer le framework `ReAct` pour explorer plusieurs chemins de résolution en parallèle, évaluer leur potentiel et choisir le meilleur.
+    - **Bénéfice** : Capacité à résoudre des problèmes ouverts qui n'ont pas de solution unique évidente.
+
+- **Intégrations d'Outils Étendues** :
+    - **Action** : Intégrer de nouveaux outils essentiels comme `agent_wikipedia`, la recherche web (DuckDuckGo), et un agent capable d'exécuter du code dans un `sandbox` sécurisé.
+    - **Bénéfice** : Augmente le champ d'action de Nina.
+
+- **Multi-modalité** :
+    - **Action** : Intégration de la reconnaissance vocale (STT via Whisper) et de la synthèse vocale (TTS).
+    - **Bénéfice** : Permet une interaction plus naturelle avec Nina.
+
+---
+*Ce document sera mis à jour au fur et à mesure de l'avancement du projet.* 

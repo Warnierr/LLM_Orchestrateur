@@ -24,7 +24,7 @@ class AgentRedacteur:
         
         query = context_data.get('query', '')
         search_results = context_data.get('search_results', {})
-        history = context_data.get('conversation_history', [])
+        summary = context_data.get('conversation_summary', 'Aucun résumé fourni.')
         
         # Préparation du prompt enrichi
         prompt = f"""Tu es Nina, une assistante IA. Ta mission est de fournir une réponse complète et pertinente à la requête de l'utilisateur.
@@ -32,9 +32,9 @@ class AgentRedacteur:
 Pour cela, tu disposes de plusieurs sources d'information :
 1.  **La requête actuelle de l'utilisateur.**
 2.  **Les résultats d'une recherche web.**
-3.  **L'historique récent de la conversation.**
+3.  **Un résumé de l'historique récent de la conversation.**
 
-Analyse toutes ces informations pour formuler la meilleure réponse possible. Si l'historique contient des informations personnelles pertinentes (comme des préférences), utilise-les pour personnaliser ta réponse.
+Analyse toutes ces informations pour formuler la meilleure réponse possible. Le résumé te donne le contexte global de la discussion.
 
 ---
 ### CONTEXTE ###
@@ -45,8 +45,8 @@ Analyse toutes ces informations pour formuler la meilleure réponse possible. Si
 **Résultats de la Recherche Web :**
 {json.dumps(search_results, indent=2, ensure_ascii=False)}
 
-**Historique de Conversation :**
-{json.dumps(history, indent=2, ensure_ascii=False)}
+**Résumé de la Conversation :**
+{summary}
 
 ---
 ### TA RÉPONSE SYNTHÉTISÉE ###
