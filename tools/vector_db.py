@@ -14,6 +14,7 @@ import hashlib
 import itertools
 import uuid
 from typing import List
+import os
 
 # -----------------------------------------------------------------------------
 # Import sécurisé de Qdrant ; si la lib n'est pas dispo (ex. CI minimal),
@@ -95,10 +96,20 @@ class VectorDB:
     def __init__(self, collection: str = "nina_vectors", dim: int = SimpleEmbedder.dim):
         self.collection = collection
         self.dim = dim
-        # In-memory Qdrant instance
-        self.client = QdrantClient(":memory:")
+        # Connexion à Qdrant persistant si configuré
+        qdrant_url = os.getenv("QDRANT_URL")
+        qdrant_api_key = os.getenv("QDRANT_API_KEY")
+        if qdrant_url:
+            # Connexion à une instance Qdrant distante ou locale
+            self.client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
+        else:
+            # Instance Qdrant en mémoire (mode POC)
+            self.client = QdrantClient(":memory:")
         # Crée la collection si elle n'existe pas
-        if self.collection not in [c.name for c in self.client.get_collections().collections]:
+        # Récupère la liste des collections Qdrant de façon sécurisée
+        collections_list = getattr(self.client.get_collections(), "collections", [])
+        existing_names = [getattr(c, "name", None) for c in collections_list]
+        if self.collection not in existing_names:
             self.client.recreate_collection(
                 collection_name=self.collection,
                 vectors_config=rest.VectorParams(size=dim, distance=rest.Distance.COSINE),

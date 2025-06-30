@@ -17,6 +17,8 @@ class AgentLLMLocal:
         self.base_url = base_url
         self.use_ollama = False
         self.memory = None  # Initialisé à la demande
+        self.use_vllm = False
+        self.llm_client = None
         
         self.fallback_responses = {
             "nom": "Je suis Nina, votre assistante IA locale. Je fonctionne actuellement en mode fallback car Ollama n'est pas disponible.",
@@ -38,6 +40,14 @@ class AgentLLMLocal:
                 print(f"[AgentLLMLocal] Modèle local trouvé: {LOCAL_MODEL_PATH}")
             else:
                 print(f"[AgentLLMLocal] ⚠️ Modèle local non trouvé: {LOCAL_MODEL_PATH}")
+        # Tentative d'intégration de vLLM pour le modèle local
+        try:
+            from vllm import LLM
+            self.llm_client = LLM(model=LOCAL_MODEL_PATH)
+            self.use_vllm = True
+            print(f"[AgentLLMLocal] vLLM chargé avec le modèle local: {LOCAL_MODEL_PATH}")
+        except Exception as e:
+            print(f"[AgentLLMLocal] vLLM non disponible ou erreur de chargement du modèle: {e}")
         
         # Fonctions exposées au modèle pour Function Calling
         self.functions = [
@@ -164,45 +174,31 @@ class AgentLLMLocal:
         return self.chat_with_memory([system_msg, user_msg])
 
     def chat(self, messages: List[Dict[str, str]]) -> str:
-        """Effectue un échange chat avec Ollama ou fallback."""
-        if not self.use_ollama:
-            return self._fallback_chat(messages)
-            
-        try:
-            # Construire le prompt à partir des messages
-            prompt = self._build_prompt_from_messages(messages)
-            
-            # Appel à Ollama
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                json={
-                    "model": self.model,
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {
-                        "temperature": 0.2,
-                        "top_p": 0.9
-                    }
-                },
-                timeout=30
-            )
-            response.raise_for_status()
-            
-            result = response.json()
-            return result.get("response", "")
-            
-        except Exception as e:
-            print(f"[AgentLLMLocal] Erreur chat Ollama: {e}")
-            return self._fallback_chat(messages)
-
-    def generate(self, prompt: str) -> str:
-        """Génère une réponse à partir d'un prompt simple."""
-        if not self.use_ollama:
-            return self._fallback_generate(prompt)
-            
-        system_msg = {"role": "system", "content": "Vous êtes Nina, une assistante IA locale. Répondez en français, de manière concise et précise."}
-        user_msg = {"role": "user", "content": prompt}
-        return self.chat([system_msg, user_msg])
+        """Effectue un échange chat avec vLLM, Ollama ou fallback."""
+        # Prioritise vLLM si disponible
+        if self.use_vllm and self.llm_client is not None:
+            return self._vllm_chat(messages)
+        # Puis Ollama
+        if self.use_ollama:
+            try:
+                prompt = self._build_prompt_from_messages(messages)
+                response = requests.post(
+                    f"{self.base_url}/api/generate",
+                    json={
+                        "model": self.model,
+                        "prompt": prompt,
+                        "stream": False,
+                        "options": {"temperature": 0.2, "top_p": 0.9}
+                    },
+                    timeout=30
+                )
+                response.raise_for_status()
+                result = response.json()
+                return result.get("response", "")
+            except Exception as e:
+                print(f"[AgentLLMLocal] Erreur chat Ollama: {e}")
+        # Fallback final
+        return self._fallback_chat(messages)
 
     def _fallback_chat(self, messages: List[Dict[str, str]]) -> str:
         """Mode fallback pour le chat."""
@@ -219,6 +215,29 @@ class AgentLLMLocal:
             return self.fallback_responses["actualités"]
         else:
             return f"{self.fallback_responses['default']} Votre question: '{last_message}'"
+
+    def _vllm_chat(self, messages: List[Dict[str, str]]) -> str:
+        """Chat via vLLM en local."""
+        try:
+            prompt = self._build_prompt_from_messages(messages)
+            # Génération vLLM
+            outputs = self.llm_client.generate(prompt)  # type: ignore
+            # Récupérer le premier token stream si possible
+            outputs_iter = iter(outputs)
+            first = next(outputs_iter)
+            return first.outputs[0].text
+        except Exception as e:
+            print(f"[AgentLLMLocal] Erreur vLLM: {e}")
+            return self._fallback_chat(messages)
+
+    def generate(self, prompt: str) -> str:
+        """Génère une réponse à partir d'un prompt simple."""
+        if not self.use_ollama:
+            return self._fallback_generate(prompt)
+            
+        system_msg = {"role": "system", "content": "Vous êtes Nina, une assistante IA locale. Répondez en français, de manière concise et précise."}
+        user_msg = {"role": "user", "content": prompt}
+        return self.chat([system_msg, user_msg])
 
     def _fallback_generate(self, prompt: str) -> str:
         """Mode fallback pour generate."""

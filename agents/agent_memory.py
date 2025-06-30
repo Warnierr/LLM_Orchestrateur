@@ -424,7 +424,16 @@ class AgentMemory:
             
             with open(self.memory_file, 'w', encoding='utf-8') as f:
                 json.dump(memory_data, f, ensure_ascii=False, indent=2)
-                
+            # Logging des statistiques de mémoire
+            try:
+                os.makedirs('logs', exist_ok=True)
+                stats = self.get_memory_stats()
+                log_entry = {'timestamp': datetime.now().isoformat(), **stats}
+                with open('logs/memory_stats.jsonl', 'a', encoding='utf-8') as logf:
+                    json.dump(log_entry, logf, ensure_ascii=False)
+                    logf.write('\n')
+            except Exception as log_e:
+                print(f"[AgentMemory] Erreur logging mémoire: {log_e}")
         except Exception as e:
             print(f"[AgentMemory] Erreur sauvegarde: {e}")
 

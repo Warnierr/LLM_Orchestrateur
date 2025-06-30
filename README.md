@@ -34,6 +34,18 @@ curl -fsSL https://ollama.ai/install.sh | sh
 ollama pull mistral:7b
 ```
 
+4. **Installer Docker et lancer Qdrant (mémoire vectorielle persistante)**
+```bash
+# Assurez-vous d'avoir Docker installé (Docker Desktop sous Windows/macOS ou Docker Engine sous Linux).
+# Démarrer le conteneur Qdrant
+docker run -d --name nina-qdrant -p 6333:6333 -v $(pwd)/qdrant_data:/qdrant/storage qdrant/qdrant
+```
+
+Exportez ensuite la variable d'environnement pour pointer Nina vers Qdrant :
+```bash
+export QDRANT_URL=http://localhost:6333
+```
+
 ## 🎮 Utilisation
 
 ### Interface CLI Interactive
@@ -103,6 +115,10 @@ OPENAI_API_KEY=ollama
 # APIs Externes (optionnel)
 NEWSAPI_KEY=votre_cle_newsapi
 SERPAPI_KEY=votre_cle_serpapi
+
+# Vector store Qdrant (persistant)
+QDRANT_URL=http://localhost:6333
+QDRANT_API_KEY=  # facultatif, si nécessaire
 ```
 
 ### Fichier de Configuration

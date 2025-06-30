@@ -14,3 +14,12 @@ vllm>=0.8.5
 # Testing
 pytest>=7.0.0
 pytest-cov>=4.0.0
+
+# SQLAlchemy
+sqlalchemy>=1.4.0
+
+# Streamlit
+streamlit>=1.20.0
+
+# Fix des versions protobuf pour compatibilité vLLM
+protobuf<3.21.0,>=3.20.0

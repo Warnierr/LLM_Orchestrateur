@@ -26,11 +26,31 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="Nina CLI")
     parser.add_argument(
+        '--nina',
+        action='store_true',
+        help="Mode Nina direct : mémoire + orchestrateur interne"
+    )
+    parser.add_argument(
         '--direct',
         action='store_true',
         help="Mode direct : parler au LLM local Mistral sans passer par l'orchestrateur"
     )
     args = parser.parse_args()
+    if args.nina:
+        from agents.agent_nina import AgentNina  # noqa: E402
+        nina = AgentNina()
+        print("Nina interactive – tapez 'exit' pour quitter.")
+        while True:
+            try:
+                user_input = input("> ")
+            except (KeyboardInterrupt, EOFError):
+                print("\nFermeture…")
+                break
+            if user_input.lower().strip() in {"exit", "quit"}:
+                break
+            response = nina.think_and_respond(user_input)
+            print(f"Nina : {response}")
+        return
     if args.direct:
         # Mode direct via Orchestrateur (utilise LLM local si configuré)
         orch = Orchestrator()

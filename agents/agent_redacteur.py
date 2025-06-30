@@ -57,7 +57,7 @@ class AgentRedacteur:
                     return content.strip()
             except Exception as exc:
                 print(f"[AgentRedacteur] Erreur appel LLM : {exc}")
-                # fallback raw report
+                # fallback rapport brut
                 return report
 
         # Pas de LLM ou échec, renvoyer rapport brut

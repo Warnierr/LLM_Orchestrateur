@@ -8,6 +8,7 @@ L'agent principal qui orchestre tous les autres agents de manière intelligente.
 import sys
 import os
 import time
+import json
 from enum import Enum
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional
@@ -21,6 +22,7 @@ from agents.agent_redacteur import AgentRedacteur
 from agents.agent_planificateur import AgentPlanificateur
 from agents.agent_news import AgentNews
 from tools.vector_db import VectorDB
+from tools.sql_db import SQLDatabase
 
 class TaskType(Enum):
     """Types de tâches que Nina peut traiter."""
@@ -90,6 +92,13 @@ class AgentNina:
             self.user_profile = cfg.get('parameters', {})
         except Exception:
             self.user_profile = {}
+        # Intégration SQL pour la mémoire relationnelle
+        db_url = os.getenv('DATABASE_URL', 'sqlite:///data/nina_memory.db')
+        self.sql_db = SQLDatabase(db_url)
+        # Charger historique de conversation et profil utilisateur depuis la BDD SQL
+        self.conversation_history = self.sql_db.load_conversations()
+        db_profile = self.sql_db.load_user_profile()
+        self.user_profile = {**self.user_profile, **db_profile}
         # Initialiser l'agent LLM local si configuré
         self.local_llm = None
         if self.user_profile.get('use_local_llm'):
@@ -250,13 +259,19 @@ class AgentNina:
                 # Tâches de recherche et autres utilisent le rapport traditionnel
                 response = self._generate_data_rich_response(query, results, plan)
             self.conversation_history[-1]['response'] = response
+            # Persister l'interaction dans la BDD SQL
+            self.sql_db.save_interaction(query, response)
             return response
         # Déterminer le plan de tâche pour choisir la stratégie
         plan = self.analyze_request(query)
         # Construire le prompt initial avec contexte système
         system_msg = {
             "role": "system",
-            "content": "Vous êtes Nina, une assistante IA qui orchestre plusieurs agents pour répondre aux requêtes utilisateurs. Utilisez uniquement les fonctions fournies."
+            "content": (
+                "Vous êtes Nina, une assistante IA qui orchestre plusieurs agents pour répondre aux requêtes utilisateurs. "
+                "Pour chaque requête, fournissez d'abord votre raisonnement détaillé (chain-of-thought), puis la réponse finale. "
+                "Utilisez uniquement les fonctions fournies."
+            )
         }
         user_msg = {"role": "user", "content": query}
         # Préparer la liste de messages, en injectant la mémoire pour les conversations
@@ -283,6 +298,8 @@ class AgentNina:
                     [query, response],
                     [{"timestamp": ts}, {"timestamp": ts}]
                 )
+                # Persister l'interaction dans la BDD SQL
+                self.sql_db.save_interaction(query, response)
                 return response
             except Exception as e:
                 print(f"[AgentNina] Erreur LLM local: {e}, bascule vers OpenAI(FunctionCalling)")
@@ -342,6 +359,8 @@ class AgentNina:
             response = msg.content or ""
         # Stocker la réponse
         self.conversation_history[-1]['response'] = response
+        # Persister l'interaction dans la BDD SQL
+        self.sql_db.save_interaction(query, response)
         return response
     
     def _generate_data_rich_response(self, query: str, results: Dict[str, Any], plan: TaskPlan) -> str:
@@ -374,4 +393,8 @@ class AgentNina:
             "success_rate": "100.0%",
             "conversation_length": len(self.conversation_history),
             "memory_size": 0
-        } 
+        }
+    
+    # Anciennes méthodes metadata SQLite supprimées
+    
+    # Plus de metadata SQLite via tools.db : tout géré par tools/sql_db.py 

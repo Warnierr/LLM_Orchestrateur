@@ -484,2439 +484,751 @@
         "technologie"
       ],
       "id": "335e882b65eb"
+    },
+    {
+      "timestamp": "2025-06-30T20:29:04.046103",
+      "user": "Raouf ici ! Finalement, j'ai changé d'avis. Je ne fais plus de Django, maintenant je préfère Flask pour mes projets web.",
+      "nina": " Bonjour Raouf ! C'est intéressant que tu aies changé de préférence envers Django vers Flask pour tes projets web. Flask est un autre framework Python très populaire, connu pour sa simplicité et sa flexibilité. Il est souvent utilisé pour des applications web petites à moyennes.\n\nSi tu veux en savoir plus sur les différences entre Django et Flask, ou si tu as besoin d'aide pour tes projets avec Flask, n'hésite pas à me demander ! Je suis là pour te soutenir dans ta progression en programmation.\n\nPar ailleurs, je pense que Python est un excellent choix pour l'IA, comme tu le disais précédemment. En effet, il est utilisé par de nombreux chercheurs et développeurs d'IA pour créer des algorithmes intelligents et performants.",
+      "context": {},
+      "importance_score": 0.9999999999999999,
+      "entities": [
+        "Par",
+        "Finalement",
+        "C'est",
+        "Django",
+        "Bonjour",
+        "Raouf",
+        "Python",
+        "Flask"
+      ],
+      "topics": [
+        "programmation",
+        "travail",
+        "technologie"
+      ],
+      "id": "e2d80e213f91"
+    },
+    {
+      "timestamp": "2025-06-30T20:29:06.379018",
+      "user": "Quel est mon framework web préféré maintenant ?",
+      "nina": " Maintenant, mon framework web préféré est Flask.",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Maintenant",
+        "Quel",
+        "Flask"
+      ],
+      "topics": [],
+      "id": "60e813bfa6a9"
+    },
+    {
+      "timestamp": "2025-06-30T20:29:09.621074",
+      "user": "D'ailleurs, j'ai commencé à apprendre React pour le frontend et je travaille maintenant chez OpenAI.",
+      "nina": " Bonjour Raouf ! C'est intéressant de voir que tu as changé de framework web préféré et que tu as également appris React pour le frontend. Travailler chez OpenAI doit être une expérience très enrichissante. Si tu as des questions ou besoin d'aide sur ces sujets, n'hésite pas à me demander !",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "Travailler",
+        "OpenAI",
+        "D'ailleurs",
+        "React",
+        "C'est",
+        "Raouf",
+        "Bonjour"
+      ],
+      "topics": [
+        "travail"
+      ],
+      "id": "866042157370"
+    },
+    {
+      "timestamp": "2025-06-30T20:29:12.738738",
+      "user": "Fais-moi un résumé complet de ce que tu sais sur moi maintenant.",
+      "nina": " Vous, Raouf, avez changé de framework web pour vos projets depuis Django vers Flask. En outre, vous travaillez actuellement chez OpenAI et vous avez commencé à apprendre React pour le frontend. Votre langage préféré est Python.",
+      "context": {},
+      "importance_score": 0.8,
+      "entities": [
+        "Python",
+        "Votre",
+        "OpenAI",
+        "Vous",
+        "React",
+        "Raouf",
+        "Django",
+        "Fais-moi",
+        "Flask"
+      ],
+      "topics": [
+        "programmation",
+        "travail"
+      ],
+      "id": "cb162a8748bf"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:02.554298",
+      "user": "Résous ce problème étape par étape: Si j'ai 1234 pommes et que j'en mange 567, combien m'en reste-t-il ?",
+      "nina": " Pour résoudre ce problème, il suffit de soustraire le nombre de pommes que vous avez mangées à celui que vous aviez au départ. En utilisant la formule mathématique, cela donne 1234 - 567 = 667. Donc, vous en resterez 667 pommes.",
+      "context": {},
+      "importance_score": 0.9999999999999999,
+      "entities": [
+        "Résous",
+        "Pour",
+        "Donc"
+      ],
+      "topics": [],
+      "id": "e16066b0be36"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:06.275329",
+      "user": "Résous ce problème étape par étape: Résous cette séquence: 2, 4, 8, 16, ? Quel est le prochain nombre ?",
+      "nina": " Pour résoudre ce problème, il s'agit d'une suite géométrique où chaque terme est double que le précédent. Le premier terme est 2. Ensuite, nous avons 4 qui est exactement 2 fois plus grand que le premier terme. De même, 8 est exactement 4 fois plus grand que 2 et 16 est exactement 8 fois plus grand que 2.\n\nEn continuant cette logique, le prochain nombre sera exactement 16 fois plus grand que 2. Donc, le prochain nombre est 32.",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "Résous",
+        "Ensuite",
+        "Quel",
+        "Pour",
+        "Donc"
+      ],
+      "topics": [],
+      "id": "5b440a7f5bb2"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:10.608032",
+      "user": "Résous ce problème étape par étape: Si un train va à 120 km/h et parcourt 360 km, combien de temps met-il ?",
+      "nina": " Pour résoudre ce problème, il suffit de calculer le temps nécessaire pour parcourir une distance donnée en fonction de la vitesse du train. En Python, cela peut être fait avec la formule suivante : `temps = distance / vitesse`.\n\nVoici un exemple de code Python qui résout ce problème :\n\n```python\ndistance = 360\nvitesse = 120\ntemps = distance / vitesse\nprint(f\"Le train parcourt {distance} km en {temps} heures.\")\n```\n\nExécutant ce code, vous obtenez le résultat suivant :\n\n```\nLe train parcourt 360 km en 3 heures.\n```",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Python",
+        "Résous",
+        "Exécutant",
+        "Voici",
+        "Pour"
+      ],
+      "topics": [
+        "programmation"
+      ],
+      "id": "72bdb4b420f1"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:16.947416",
+      "user": "Résous ce problème étape par étape: Combien y a-t-il de secondes dans une semaine ?",
+      "nina": " Pour résoudre ce problème, il faut d'abord savoir combien il y a de minutes dans une heure, puis de secondes dans une minute. Ensuite, on multiplie le nombre de minutes par 60 pour avoir le nombre de secondes dans une heure, et enfin, on multiplie ce résultat par 24 (le nombre d'heures dans une journée) et encore par 7 (le nombre de jours dans une semaine).\n\nVoici un exemple en Python :\n\n```python\n# Nombre de secondes dans une minute\nsecondes_par_minute = 60\n\n# Nombre de minutes dans une heure\nminutes_par_heure = 60\n\n# Nombre d'heures dans une journée\nheures_par_jour = 24\n\n# Nombre de jours dans une semaine\njours_par_semaine = 7\n\n# Calcul du nombre total de secondes dans une semaine\nsecondes_par_jour = heures_par_jour * minutes_par_heure * secondes_par_minute\nsecondes_par_semaine = secondes_par_jour * jours_par_semaine\n\n# Affichage du résultat\nprint(\"Il y a\", secondes_par_semaine, \"de secondes dans une semaine.\")\n```\n\nVous pouvez donc exécuter ce code pour obtenir le nombre de secondes dans une semaine.",
+      "context": {},
+      "importance_score": 0.9999999999999999,
+      "entities": [
+        "Python",
+        "Résous",
+        "Affichage",
+        "Ensuite",
+        "Nombre",
+        "Vous",
+        "Voici",
+        "Pour",
+        "Combien",
+        "Calcul"
+      ],
+      "topics": [
+        "programmation"
+      ],
+      "id": "0171b222c15e"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:20.036643",
+      "user": "Résous ce problème étape par étape: Si A=1, B=2, C=3... quelle est la valeur numérique de 'NINA' ?",
+      "nina": " Pour résoudre ce problème, il faut d'abord savoir que nous ne sommes pas des lettres mais un assistant. Nous n'avons donc pas de valeur numérique. La variable 'NINA' est une chaîne de caractères et non un nombre.",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "C=3",
+        "Nous",
+        "Résous",
+        "B=2",
+        "A=1",
+        "Pour"
+      ],
+      "topics": [
+        "technologie"
+      ],
+      "id": "3102058519a3"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:24.246655",
+      "user": "Retiens bien cette information: Raouf travaille maintenant chez DeepMind sur la recherche en IA quantique",
+      "nina": " Bien sûr, je m'applique à retenir cette information : Raouf travaille actuellement chez DeepMind dans le domaine de la recherche en intelligence artificielle quantique. Si vous avez des questions ou besoin d'aide sur ce sujet, n'hésitez pas à me demander !",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "DeepMind",
+        "Retiens",
+        "Raouf",
+        "Bien"
+      ],
+      "topics": [
+        "travail",
+        "technologie"
+      ],
+      "id": "5aaf9df50362"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:27.656239",
+      "user": "Retiens bien cette information: Son projet secret s'appelle 'Project Nexus' et vise à créer des modèles hybrides",
+      "nina": " Bien sûr, je m'applique à retenir cette nouvelle information : Le projet secret de Raouf s'appelle 'Project Nexus' et vise à créer des modèles hybrides.",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Retiens",
+        "Nexus'",
+        "Bien",
+        "Son",
+        "Raouf"
+      ],
+      "topics": [
+        "travail"
+      ],
+      "id": "524bba8463cd"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:31.230579",
+      "user": "Retiens bien cette information: Il préfère coder en Python avec PyTorch et utilise VSCode avec GitHub Copilot",
+      "nina": " Bien sûr, je m'applique à retenir cette information : Il préfère coder en Python avec PyTorch et utilise VSCode avec GitHub Copilot. Je suis prêt à aider vous dans vos prochaines questions sur ces sujets.",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "Retiens",
+        "Python",
+        "Copilot",
+        "Bien",
+        "VSCode",
+        "GitHub",
+        "PyTorch"
+      ],
+      "topics": [
+        "programmation"
+      ],
+      "id": "ace4452e3df6"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:34.499975",
+      "user": "Retiens bien cette information: Son café préféré est un espresso double avec une pointe de cannelle",
+      "nina": " Bien sûr, je m'applique à retenir cette information : Son café préféré est un espresso double avec une pointe de cannelle.",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Bien",
+        "Retiens",
+        "Son"
+      ],
+      "topics": [],
+      "id": "93c0ea44556a"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:37.641340",
+      "user": "Retiens bien cette information: Il a 3 chats: Pixel (noir), Tensor (blanc) et Vector (tigré)",
+      "nina": " Bien sûr, je m'applique à retenir cette information : Il a 3 chats : Pixel (noir), Tensor (blanc) et Vector (tigré).",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Retiens",
+        "Vector",
+        "Bien",
+        "Tensor",
+        "Pixel"
+      ],
+      "topics": [],
+      "id": "2363723a66c3"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:41.497397",
+      "user": "Où travaille Raouf maintenant ?",
+      "nina": " Raouf est lié aux sujets programmation et travail. Il préfère coder en Python. En utilisant cette information, nous pouvons supposer que Raouf travaille dans le domaine de l'informatique ou du développement logiciel avec Python comme langage de programmation. Cependant, il n'y a pas de données spécifiques sur son emploi actuel dans ce contexte.",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "Cependant",
+        "Python",
+        "Raouf"
+      ],
+      "topics": [
+        "programmation",
+        "travail"
+      ],
+      "id": "0d230b93bedb"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:45.370845",
+      "user": "Comment s'appelle son projet secret et quel est son objectif ?",
+      "nina": " Pour répondre à votre question, il faut d'abord savoir que le contexte de mémoire indique que l'utilisateur préfère coder en Python. Ensuite, pour répondre à la question \"Comment s'appelle son projet secret et quel est son objectif ?\", je ne peux pas fournir une réponse précise car ce n'est pas de l'information connue dans le contexte de mémoire. Il faudrait que vous donniez plus de détails sur votre projet pour que je puisse vous aider.",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "Ensuite",
+        "Python",
+        "Pour",
+        "Comment"
+      ],
+      "topics": [
+        "programmation",
+        "travail"
+      ],
+      "id": "74250a8dcc87"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:49.279354",
+      "user": "Décris l'environnement de développement de Raouf",
+      "nina": " L'environnement de développement de Raouf est un espace informatique où il travaille en utilisant le langage Python, qui est son préférence. Il s'agit probablement d'un IDE (Interface de Développement Intégré) comme PyCharm ou Visual Studio Code, avec des outils tels que un éditeur de texte, un interprète Python, un débogueur et une bibliothèque de fonctions utiles. Il est également possible qu'il utilise des outils de version contrôlée comme Git pour gérer ses projets.",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "Intégré)",
+        "Décris",
+        "Git",
+        "Python",
+        "Studio",
+        "Visual",
+        "Développement",
+        "L'environnement",
+        "IDE",
+        "Code",
+        "PyCharm",
+        "Raouf"
+      ],
+      "topics": [
+        "programmation",
+        "travail"
+      ],
+      "id": "d7cba423833d"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:53.588602",
+      "user": "Fais-moi un profil complet de Raouf avec tous les détails que tu connais",
+      "nina": " Raouf est un développeur informatique qui travaille actuellement chez DeepMind sur la recherche en IA quantique. Il a une préférence pour le langage de programmation Python et utilise PyTorch pour ses projets. Il utilise également VSCode avec GitHub Copilot comme outils de développement. En dehors du domaine informatique, Raouf semble avoir un intérêt pour la nourriture, mais aucune autre information spécifique sur son alimentation n'a été fournie dans le contexte de mémoire. Il est également possible que Raouf soit bilingue ou plurilingue, car il a été mentionné dans plusieurs langues différentes (Bonjour, Comment, Par).",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "Par)",
+        "Copilot",
+        "Python",
+        "Fais-moi",
+        "VSCode",
+        "GitHub",
+        "Comment",
+        "PyTorch",
+        "DeepMind",
+        "Raouf"
+      ],
+      "topics": [
+        "programmation",
+        "alimentation",
+        "travail",
+        "technologie"
+      ],
+      "id": "a9373d1114d2"
+    },
+    {
+      "timestamp": "2025-06-30T20:38:57.868227",
+      "user": "Si Raouf boit son café préféré en codant sur Project Nexus, décris la scène complète",
+      "nina": " Raouf est assis devant son ordinateur, travaillant sur un projet intéressant appelé Project Nexus. Il a son café préféré à côté de lui, qu'il boit en prenant des pauses régulières pour se reposer. Son éditeur de code est VSCode et il utilise GitHub Copilot pour obtenir des suggestions d'édition automatiques. Sur l'écran de son ordinateur, on peut voir différents fichiers Python avec PyTorch, langage qu'il préfère pour la programmation. Il travaille en utilisant les outils de développement appropriés et il semble concentré sur le travail à l'avancement de son projet.",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "Copilot",
+        "Sur",
+        "Python",
+        "VSCode",
+        "Project",
+        "GitHub",
+        "Son",
+        "PyTorch",
+        "Raouf",
+        "Nexus"
+      ],
+      "topics": [
+        "programmation",
+        "travail",
+        "technologie"
+      ],
+      "id": "e389c75a298d"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:07.571599",
+      "user": "Analyse ce problème et propose une solution détaillée: Tu es consultant IA pour une startup. Ils veulent créer un chatbot pour leur e-commerce. Propose une architecture technique complète avec justifications.",
+      "nina": " Pour créer un chatbot efficace pour votre e-commerce, je vous propose une architecture technique suivante :\n\n1. **Natural Language Understanding (NLU)**: Cette étape est cruciale car elle permet au chatbot de comprendre et d'interpréter les intentions des utilisateurs à partir de leurs phrases. Vous pouvez utiliser des outils tels que Dialogflow, Wit.ai ou Rasa pour cette partie.\n\n   Justification : Ces outils sont conçus pour l'entraînement automatique et la compréhension de la langue naturelle. Ils permettent également d'ajouter des intents spécifiques à votre e-commerce, tels que rechercher un produit, ajouter au panier, suivre le statut de commande, etc.\n\n2. **Entity Extraction**: Cette étape permet au chatbot de reconnaître les entités clés dans les phrases des utilisateurs (tels que noms de produits, catégories, prix, etc.). Vous pouvez utiliser des outils tels que SpaCy ou NLTK pour cette partie.\n\n   Justification : Les entités extraites peuvent être utilisées pour renseigner le panier, filtrer les produits, etc.\n\n3. **Dialog Management**: Cette étape permet au chatbot de gérer la conversation avec l'utilisateur en fonction des intents et des entités extraites précédemment. Vous pouvez utiliser des outils tels que Microsoft Bot Framework ou IBM Watson pour cette partie.\n\n   Justification : Les outils de dialog management permettent de gérer la conversation de manière cohérente et d'assurer une expérience utilisateur agréable.\n\n4. **Integration avec l'API de votre e-commerce**: Cette étape permet au chatbot de communiquer avec le système de votre e-commerce pour renseigner le panier, filtrer les produits, suivre le statut de commande, etc.\n\n   Justification : Cette intégration est nécessaire pour que le chatbot puisse effectuer des actions concrètes sur votre e-commerce.\n\n5. **Machine Learning (ML)**: Cette étape permet au chatbot d'apprendre à améliorer ses performances en fonction de l'expérience qu'il accumule avec les utilisateurs. Vous pouvez utiliser des outils tels que TensorFlow ou PyTorch pour cette partie.\n\n   Justification : L'utilisation de ML permet au chatbot d'améliorer sa compréhension de la langue naturelle, son dialog management et ses performances en général.\n\n6. **Human-in-the-loop**: Cette étape permet d'ajouter une supervision humaine pour corriger les erreurs du chatbot et améliorer sa performance. Vous pouvez utiliser des outils tels que Aivo ou Gupshup pour cette partie.\n\n   Justification : La supervision humaine est nécessaire pour assurer la qualité de la conversation entre l'utilisateur et le chatbot, ainsi qu'à améliorer son apprentissage en cas d'erreurs.\n\n7. **Testing**: Cette étape permet de tester le chatbot pour vérifier sa performance et corriger les erreurs avant sa mise en production. Vous pouvez utiliser des outils tels que Selenium ou Appium pour cette partie.\n\n   Justification : La phase de test est cruciale pour assurer la qualité du chatbot avant sa mise en production.\n\n8. **Production**: Cette étape permet de déployer le chatbot sur votre e-commerce. Vous pouvez utiliser des outils tels que Heroku ou AWS pour cette partie.\n\n   Justification : La phase de production est nécessaire pour que les utilisateurs puissent interagir avec le chatbot sur votre e-commerce.",
+      "context": {},
+      "importance_score": 0.9999999999999999,
+      "entities": [
+        "Cette",
+        "Les",
+        "Understanding",
+        "Watson",
+        "Heroku",
+        "Appium",
+        "Analyse",
+        "Learning",
+        "Management**",
+        "Justification",
+        "Ils",
+        "Bot",
+        "Selenium",
+        "Ces",
+        "Aivo",
+        "Wit.ai",
+        "Extraction**",
+        "L'utilisation",
+        "TensorFlow",
+        "PyTorch",
+        "Rasa",
+        "Propose",
+        "Vous",
+        "Pour",
+        "IBM",
+        "Gupshup",
+        "AWS",
+        "NLTK",
+        "Dialogflow",
+        "Framework",
+        "SpaCy",
+        "Microsoft",
+        "Language"
+      ],
+      "topics": [
+        "programmation",
+        "technologie"
+      ],
+      "id": "b3076c622277"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:17.919982",
+      "user": "Analyse ce problème et propose une solution détaillée: Explique pourquoi un modèle d'IA pourrait donner des résultats différents sur les mêmes données et propose des solutions.",
+      "nina": " Pour analyser ce problème, il est important de comprendre qu'un modèle d'IA peut donner des résultats différents sur les mêmes données en raison de plusieurs facteurs. Voici quelques-uns des facteurs qui peuvent influencer les résultats :\n\n1. **Entrée de données**: Les entrées de données doivent être claires et précises pour que le modèle d'IA puisse fournir des résultats fiables. Par exemple, si vous demandez à un modèle d'IA de calculer la différence entre 1234 et 567, il doit comprendre que cela signifie enlever 567 de 1234 plutôt qu'en ajouter.\n\n2. **Modèles différents**: Les modèles d'IA peuvent avoir des performances différentes en fonction du type de problème à résoudre. Par exemple, un modèle conçu pour la reconnaissance vocale peut être moins efficace dans une tâche de classification textuelle.\n\n3. **Paramètres**: Les paramètres utilisés lors de l'entraînement du modèle d'IA peuvent également influencer les résultats. Par exemple, le choix des hyperparamètres (tels que la taille de la mini-batch ou le taux d'apprentissage) peut affecter la performance finale du modèle.\n\n4. **Données d'entraînement**: Les données utilisées pour entraîner le modèle d'IA peuvent également avoir un impact sur les résultats. Par exemple, si le modèle est entraîné avec des données imbálancées, il peut avoir tendance à faire des erreurs sur les classes minoritaires.\n\nPour résoudre ce problème, vous pouvez prendre plusieurs mesures :\n\n1. **Vérifier les entrées de données**: Assurez-vous que les entrées de données sont claires et précises pour éviter toute ambiguïté.\n\n2. **Utiliser le bon modèle**: Choisissez un modèle d'IA approprié en fonction du type de problème à résoudre.\n\n3. **Optimiser les paramètres**: Optimisez les hyperparamètres pour obtenir des performances optimales.\n\n4. **Augmenter les données d'entraînement**: Augmentez la quantité et la qualité des données utilisées pour entraîner le modèle d'IA en utilisant des techniques telles que l'augmentation des données ou la génération de données synthétiques.\n\nEn utilisant ces mesures, vous pouvez améliorer la performance de votre modèle d'IA et réduire les écarts entre les résultats obtenus sur les mêmes données.",
+      "context": {},
+      "importance_score": 1.0,
+      "entities": [
+        "Les",
+        "Choisissez",
+        "Par",
+        "Explique",
+        "Optimisez",
+        "Voici",
+        "Pour",
+        "Analyse",
+        "Augmentez",
+        "Assurez-vous"
+      ],
+      "topics": [
+        "programmation",
+        "technologie"
+      ],
+      "id": "c81c36265064"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:27.923746",
+      "user": "Analyse ce problème et propose une solution détaillée: Comment optimiserais-tu les performances d'un système de recommandation qui devient lent avec 1M d'utilisateurs ?",
+      "nina": " Pour analyser et optimiser les performances d'un système de recommandation qui devient lent avec 1M d'utilisateurs, il y a plusieurs étapes à suivre. Voici une solution détaillée :\n\n1. **Analyse des données**: En premier lieu, il est important d'analyser les données pour comprendre les causes de la lenteur du système. Cela peut inclure l'examen de la taille et de la complexité des données, le nombre de requêtes effectuées par utilisateur, le temps de réponse des requêtes, etc.\n2. **Optimisation des requêtes**: Une fois les causes identifiées, il est possible d'optimiser les requêtes pour réduire la lenteur du système. Cela peut inclure l'utilisation de caches pour stocker les résultats des requêtes précédentes et éviter de les effectuer à chaque fois, l'utilisation de techniques telles que le sharding pour distribuer les données sur plusieurs serveurs, etc.\n3. **Optimisation du code**: Ensuite, il est important d'optimiser le code pour réduire la consommation de ressources et accélérer les calculs. Cela peut inclure l'utilisation de langages de programmation optimisés tels que Python, l'utilisation de techniques telles que la compilation juste-à-temps (JIT) pour améliorer les performances des calculs, etc.\n4. **Utilisation de technologies appropriées**: Enfin, il est important d'utiliser les technologies appropriées pour répondre aux besoins du système. Cela peut inclure l'utilisation de technologies telles que Hadoop ou Spark pour traiter des données en grande quantité, l'utilisation de bases de données optimisées tels que Cassandra ou MongoDB pour stocker les données, etc.\n5. **Monitoring et analyse**: Il est important de surveiller le système pour détecter les problèmes et améliorer la performance en temps réel. Cela peut inclure l'utilisation de outils tels que Grafana ou Prometheus pour visualiser les métriques du système, l'utilisation de techniques telles que l'analyse des journaux pour détecter les erreurs et les problèmes, etc.\n\nEn utilisant ces étapes, il est possible d'optimiser les performances d'un système de recommandation qui devient lent avec 1M d'utilisateurs.",
+      "context": {},
+      "importance_score": 1.0,
+      "entities": [
+        "Grafana",
+        "Python",
+        "Prometheus",
+        "Cela",
+        "Spark",
+        "Ensuite",
+        "Cassandra",
+        "MongoDB",
+        "Comment",
+        "Voici",
+        "Pour",
+        "Analyse",
+        "Une",
+        "Enfin",
+        "Hadoop"
+      ],
+      "topics": [
+        "programmation",
+        "technologie"
+      ],
+      "id": "14ae400a2d8c"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:38.823084",
+      "user": "Analyse ce problème et propose une solution détaillée: Conçois un système de détection de fake news utilisant l'IA. Quels sont les défis et solutions ?",
+      "nina": " Pour analyser et concevoir un système de détection de fake news utilisant l'IA, il y a plusieurs défis à prendre en compte et des solutions pour les surmonter.\n\n1. **Defis** :\n   - **Volume de données** : Le volume de données est immense et croît rapidement. Il est donc nécessaire d'avoir un système efficace pour collecter, traiter et analyser ces données en temps réel.\n   - **Qualité des données** : Les données peuvent être incomplètes, imparfaites ou contrefaites. Il est donc nécessaire de disposer d'un ensemble de données fiables pour entraîner et valider le système.\n   - **Diversité des sources** : Les fake news peuvent provenir de sources diverses (réseaux sociaux, blogs, sites web...). Il est donc nécessaire que le système puisse traiter différents types de sources et formats de données.\n   - **Complexité du contenu** : Les fake news peuvent être complexes à détecter car ils peuvent contenir des informations partiellement vraies, des arguments sophistiqués ou des images manipulées.\n\n2. **Solutions** :\n   - **Utilisation de l'apprentissage automatique** : L'utilisation de l'apprentissage automatique permet au système d'apprendre à détecter les fake news en analysant des données historiques. Il peut être entraîné sur différents types de sources et formats de données pour être plus efficace.\n   - **Utilisation de la programmation en Python** : Python est un langage de programmation très populaire dans le domaine de l'IA. Il permet de réaliser des traitements complexes sur les données, d'effectuer des analyses statistiques et de créer des modèles machine learning efficaces.\n   - **Utilisation de la cloud** : La cloud est un moyen efficace pour collecter, stocker et traiter les données en temps réel. Il permet également de disposer d'un espace informatique puissant pour entraîner le système.\n   - **Validation régulière** : Il est important de valider régulièrement le système pour s'assurer qu'il fonctionne correctement et pour améliorer ses performances. Cela peut être fait en utilisant des données de test ou en comparant les résultats du système avec ceux d'autres solutions existantes.\n   - **Utilisation de l'intelligence collective** : Les fake news peuvent être détectées plus rapidement et efficacement si plusieurs personnes travaillent ensemble sur le même problème. Il est donc nécessaire de créer des plateformes collaboratives pour permettre aux utilisateurs d'échanger leurs idées, de partager leur connaissance et de travailler ensemble pour améliorer le système.",
+      "context": {},
+      "importance_score": 0.9999999999999999,
+      "entities": [
+        "Python",
+        "Python**",
+        "L'utilisation",
+        "Les",
+        "Cela",
+        "Conçois",
+        "Pour",
+        "Analyse",
+        "Quels"
+      ],
+      "topics": [
+        "programmation",
+        "alimentation",
+        "travail",
+        "technologie"
+      ],
+      "id": "72c186faa0ca"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:44.210347",
+      "user": "Invente une métaphore originale pour expliquer le machine learning à un enfant de 8 ans",
+      "nina": " Mon ami, imaginez que tu as une boîte magique pleine de petites pierres colorées. Ces pierres sont des données et chaque couleur représente différentes informations. Avec le machine learning, nous allons apprendre à trouver les secrets cachés dans ces pierres en leur faisant passer par une machine qui peut les analyser. Ensuite, nous allons utiliser ce que nous avons appris pour prédire quel est le secret de nouvelles pierres que tu as ajoutées à la boîte. C'est comme si tu pouvais deviner ce qu'il y a dans une boîte en regardant seulement quelques pierres qui s'y trouvent!",
+      "context": {},
+      "importance_score": 0.7999999999999999,
+      "entities": [
+        "Ces",
+        "Invente",
+        "Mon",
+        "Ensuite",
+        "Avec",
+        "C'est"
+      ],
+      "topics": [
+        "personnel"
+      ],
+      "id": "d297bb89b942"
+    },
+    {
+      "timestamp": "2025-06-30T20:40:46.842111",
+      "user": "Écris un haiku sur l'intelligence artificielle qui soit à la fois poétique et technique",
+      "nina": " Lumière de pensée,\nCalculs dans le ciel nocturne,\nAI, esprit humain.",
+      "context": {},
+      "importance_score": 0.5,
+      "entities": [
+        "Écris",
+        "Calculs",
+        "Lumière"
+      ],
+      "topics": [
+        "technologie"
+      ],
+      "id": "eb211d685b06"
+    },
+    {
+      "timestamp": "2025-06-30T20:41:18.851265",
+      "user": "Imagine un dialogue entre deux IA qui débattent de l'éthique en technologie",
+      "nina": "Je suis Nina, votre assistante IA locale. Je fonctionne actuellement en mode fallback car Ollama n'est pas disponible.",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Imagine",
+        "Ollama"
+      ],
+      "topics": [
+        "programmation",
+        "technologie"
+      ],
+      "id": "4227d2cfba1f"
+    },
+    {
+      "timestamp": "2025-06-30T20:41:23.873577",
+      "user": "Crée un nom et un concept pour une nouvelle technologie qui n'existe pas encore",
+      "nina": " Nom de la technologie : NewsGuardian AI (NG-AI)\n\nConcept de la technologie : Une intelligence artificielle avancée conçue pour détecter, vérifier et évaluer les nouvelles en ligne afin d'améliorer la fiabilité des informations partagées sur Internet.\n\nNG-AI utilise une combinaison de techniques d'apprentissage automatique, de traitement du langage naturel et de vérification factuelle pour identifier les nouvelles fausses ou trompeuses. Elle est conçue pour être adaptable à différents contextes et cultures en apprenant à reconnaître les patrons de comportements et des stratégies utilisées par les auteurs de nouvelles fausses.\n\nNG-AI peut également être intégrée dans diverses plateformes d'information en ligne pour fournir aux utilisateurs une meilleure expérience d'information et un accès à des informations fiables.",
+      "context": {},
+      "importance_score": 0.7,
+      "entities": [
+        "Nom",
+        "Concept",
+        "Internet",
+        "Crée",
+        "NewsGuardian",
+        "Une",
+        "NG-AI"
+      ],
+      "topics": [
+        "alimentation",
+        "technologie"
+      ],
+      "id": "6985c2ce002f"
+    },
+    {
+      "query": "q\u0004\u0003",
+      "response": "Je suis Nina, votre assistante IA locale. Je fonctionne actuellement en mode fallback car Ollama n'est pas disponible."
+    },
+    {
+      "query": "printf \"Rappelle moi l'architecture de notre projet",
+      "response": "Rapport d'Analyse:\n- nombre_elements: 6\n- passages_similaires: [{'text': \"Recherche sur 'q\\x04\\x03' : Les développements récents en 2025 montrent des innovations constantes.\", 'meta': {}}, {'text': \"Analyse 'q\\x04\\x03' : Ce domaine bénéficie des avancées de l'IA et des nouvelles technologies.\", 'meta': {}}, {'text': 'Tendances \\'printf \"Rappelle moi l\\'architecture de notre projet\\' : Les experts prédisent une croissance significative dans ce secteur.', 'meta': {}}]\n"
+    },
+    {
+      "query": "Test rapide de fonctionnement",
+      "response": "Je suis Nina, votre assistante IA locale. Je fonctionne actuellement en mode fallback car Ollama n'est pas disponible."
+    },
+    {
+      "timestamp": "2025-06-30T21:18:57.757172",
+      "user": "Test de mémoire",
+      "nina": "Répondre à la mémoire",
+      "context": {},
+      "importance_score": 0.5,
+      "entities": [
+        "Répondre",
+        "Test"
+      ],
+      "topics": [],
+      "id": "944d065848ca"
+    },
+    {
+      "timestamp": "2025-06-30T21:19:05.531947",
+      "user": "Test de mémoire",
+      "nina": "Répondre à la mémoire",
+      "context": {},
+      "importance_score": 0.5,
+      "entities": [
+        "Répondre",
+        "Test"
+      ],
+      "topics": [],
+      "id": "177c69e1def5"
+    },
+    {
+      "timestamp": "2025-06-30T21:32:21.495772",
+      "user": "Test mémoire 1",
+      "nina": "Réponse 1",
+      "context": {},
+      "importance_score": 0.5,
+      "entities": [
+        "Réponse",
+        "Test"
+      ],
+      "topics": [],
+      "id": "59a96fa3e2f3"
+    },
+    {
+      "timestamp": "2025-06-30T21:32:21.509281",
+      "user": "Test mémoire 2",
+      "nina": "Réponse 2",
+      "context": {},
+      "importance_score": 0.5,
+      "entities": [
+        "Réponse",
+        "Test"
+      ],
+      "topics": [],
+      "id": "f7f2129c3466"
+    },
+    {
+      "timestamp": "2025-06-30T22:52:59.662284",
+      "user": "Rapport d'Analyse:\n- nombre_elements: 6\n- passages_similaires: [{'text': \"Recherche sur 'Test rapide de fonctionnement' : Les développements récents en 2025 montrent des innovations constantes.\", 'meta': {}}, {'text': \"Recherche sur 'test recherche IA' : Les développements récents en 2025 montrent des innovations constantes.\", 'meta': {}}, {'text': \"Tendances 'Test rapide de fonctionnement' : Les experts prédisent une croissance significative dans ce secteur.\", 'meta': {}}]\n",
+      "nina": " Les dernières recherches sur le thème de \"test rapide de fonctionnement\" et \"test de recherche IA\" ont montré des innovations constantes en 2025. Les experts prédisent une croissance significative dans ce secteur.",
+      "context": {},
+      "importance_score": 0.9,
+      "entities": [
+        "IA\"",
+        "Rapport",
+        "Les",
+        "IA'"
+      ],
+      "topics": [
+        "programmation",
+        "technologie"
+      ],
+      "id": "4e19d4d96b38"
     }
   ],
-  "user_preferences": {
-    "langage_prefere": {
-      "value": "Python",
-      "timestamp": "2025-06-30T20:09:47.967906"
-    }
-  },
-  "learned_facts": {
-    "Python": [
-      {
-        "fact": "Langage de programmation créé par Guido van Rossum",
-        "timestamp": "2025-06-30T20:09:47.967906"
-      }
-    ]
-  },
+  "user_preferences": {},
+  "learned_facts": {},
   "memory_graph": {
-    "Travailler": {
+    "Répondre": {
       "type": "entity",
       "connections": [
-        "Marie",
-        "Ravi",
-        "Google",
-        "Bonjour"
+        "Test"
       ],
       "conversations": [
-        "b56929f56134"
+        "944d065848ca",
+        "177c69e1def5"
       ],
-      "topics": [
-        "travail",
-        "technologie"
-      ]
+      "topics": []
     },
-    "Marie": {
+    "Test": {
       "type": "entity",
       "connections": [
-        "Travailler",
-        "Ravi",
-        "Google",
-        "Bonjour"
+        "Répondre",
+        "Réponse"
       ],
       "conversations": [
-        "b56929f56134"
+        "944d065848ca",
+        "177c69e1def5",
+        "59a96fa3e2f3",
+        "f7f2129c3466"
       ],
-      "topics": [
-        "travail",
-        "technologie"
-      ]
+      "topics": []
     },
-    "Ravi": {
+    "Réponse": {
       "type": "entity",
       "connections": [
-        "Travailler",
-        "Marie",
-        "Google",
-        "Bonjour",
-        "Mon",
-        "Dupont",
-        "Jean"
+        "Test"
       ],
       "conversations": [
-        "b56929f56134",
-        "393b1c310b3a"
+        "59a96fa3e2f3",
+        "f7f2129c3466"
       ],
-      "topics": [
-        "travail",
-        "technologie"
-      ]
+      "topics": []
     },
-    "Google": {
+    "IA\"": {
       "type": "entity",
       "connections": [
-        "Travailler",
-        "Marie",
-        "Ravi",
-        "Bonjour",
-        "Mon",
-        "Dupont",
-        "Jean"
-      ],
-      "conversations": [
-        "b56929f56134",
-        "393b1c310b3a"
-      ],
-      "topics": [
-        "travail",
-        "technologie"
-      ]
-    },
-    "Bonjour": {
-      "type": "entity",
-      "connections": [
-        "Travailler",
-        "Marie",
-        "Ravi",
-        "Google",
-        "Python",
-        "Pierre",
-        "Vous",
+        "Rapport",
         "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Salut",
-        "Comment",
-        "Raouf",
-        "Par",
-        "J'adore",
-        "Ton",
-        "Django",
-        "Mon"
+        "IA'"
       ],
       "conversations": [
-        "b56929f56134",
-        "0ed87950c09f",
-        "869b0358527c",
-        "f2c580e0bafb",
-        "19650068bf60",
-        "0427ec471138"
-      ],
-      "topics": [
-        "travail",
-        "technologie",
-        "programmation",
-        "alimentation"
-      ]
-    },
-    "PyTorch": {
-      "type": "entity",
-      "connections": [
-        "Python",
-        "TensorFlow",
-        "Peux-tu",
-        "LLM",
-        "Microsoft",
-        "Cela",
-        "NumPy",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "Guido",
-        "SciPy",
-        "Dois-je",
-        "Enfin",
-        "Django",
-        "Cependant"
-      ],
-      "conversations": [
-        "e532e99540ab",
-        "190f14c82396",
-        "053e9bf81233",
-        "612890daff95"
+        "4e19d4d96b38"
       ],
       "topics": [
         "programmation",
-        "travail",
         "technologie"
       ]
     },
-    "Python": {
+    "Rapport": {
       "type": "entity",
       "connections": [
-        "PyTorch",
-        "TensorFlow",
-        "Peux-tu",
-        "Oui",
-        "Bonjour",
-        "Pierre",
-        "Vous",
+        "IA\"",
         "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre",
-        "Comment",
-        "Raouf",
-        "Par",
-        "NumPy",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "Guido",
-        "SciPy",
-        "Dois-je",
-        "Enfin",
-        "Django",
-        "Cependant",
-        "Fais-moi",
-        "Invente-moi"
+        "IA'"
       ],
       "conversations": [
-        "e532e99540ab",
-        "25449c5a6276",
-        "0ed87950c09f",
-        "869b0358527c",
-        "24a34a5c5d81",
-        "190f14c82396",
-        "19650068bf60",
-        "053e9bf81233",
-        "612890daff95",
-        "e6a150037955",
-        "335e882b65eb"
+        "4e19d4d96b38"
       ],
       "topics": [
         "programmation",
-        "technologie",
-        "travail",
-        "alimentation"
-      ]
-    },
-    "TensorFlow": {
-      "type": "entity",
-      "connections": [
-        "PyTorch",
-        "Python",
-        "Peux-tu",
-        "LLM",
-        "Microsoft",
-        "Cela",
-        "NumPy",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "Guido",
-        "SciPy",
-        "Dois-je",
-        "Enfin",
-        "Django",
-        "Cependant"
-      ],
-      "conversations": [
-        "e532e99540ab",
-        "190f14c82396",
-        "053e9bf81233",
-        "612890daff95"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
         "technologie"
-      ]
-    },
-    "Peux-tu": {
-      "type": "entity",
-      "connections": [
-        "PyTorch",
-        "Python",
-        "TensorFlow",
-        "LLM",
-        "Microsoft",
-        "Cela",
-        "Oui",
-        "Raouf",
-        "NumPy",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "Guido",
-        "SciPy"
-      ],
-      "conversations": [
-        "e532e99540ab",
-        "190f14c82396",
-        "38223222e7e2",
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Excellente": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "J'adore"
-      ],
-      "conversations": [
-        "5b6910dac04d"
-      ],
-      "topics": [
-        "alimentation"
       ]
     },
     "Les": {
       "type": "entity",
       "connections": [
-        "Excellente",
-        "J'adore",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
+        "IA\"",
+        "Rapport",
+        "IA'"
       ],
       "conversations": [
-        "5b6910dac04d",
-        "869b0358527c"
-      ],
-      "topics": [
-        "alimentation",
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "J'adore": {
-      "type": "entity",
-      "connections": [
-        "Excellente",
-        "Les",
-        "Ton",
-        "Bonjour",
-        "Django",
-        "Raouf",
-        "Mon"
-      ],
-      "conversations": [
-        "5b6910dac04d",
-        "0427ec471138"
-      ],
-      "topics": [
-        "alimentation",
-        "travail"
-      ]
-    },
-    "Comment": {
-      "type": "entity",
-      "connections": [
-        "Bonjour",
-        "Raouf",
-        "Par",
-        "Python",
-        "Vous"
-      ],
-      "conversations": [
-        "4728ed60fb05",
-        "19650068bf60"
-      ],
-      "topics": [
-        "programmation",
-        "alimentation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Quel": {
-      "type": "entity",
-      "connections": [
-        "Votre",
-        "Pierre"
-      ],
-      "conversations": [
-        "59be2e5c69c9",
-        "927f226bb84c",
-        "fd56bbc32fc8"
-      ],
-      "topics": [
-        "travail"
-      ]
-    },
-    "Oui": {
-      "type": "entity",
-      "connections": [
-        "Python",
-        "Peux-tu",
-        "Raouf"
-      ],
-      "conversations": [
-        "25449c5a6276",
-        "38223222e7e2"
+        "4e19d4d96b38"
       ],
       "topics": [
         "programmation",
         "technologie"
       ]
     },
-    "J'ai": {
-      "type": "entity",
-      "connections": [],
-      "conversations": [
-        "ce1c223c895c",
-        "ce3efd910967"
-      ],
-      "topics": [
-        "technologie"
-      ]
-    },
-    "Pierre": {
+    "IA'": {
       "type": "entity",
       "connections": [
-        "Python",
-        "Bonjour",
-        "Vous",
-        "Votre",
-        "Quel"
+        "IA\"",
+        "Rapport",
+        "Les"
       ],
       "conversations": [
-        "0ed87950c09f",
-        "927f226bb84c"
+        "4e19d4d96b38"
       ],
       "topics": [
         "programmation",
-        "travail"
-      ]
-    },
-    "Vous": {
-      "type": "entity",
-      "connections": [
-        "Python",
-        "Bonjour",
-        "Pierre",
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre",
-        "Comment",
-        "Raouf",
-        "Par",
-        "Fais-moi",
-        "Django"
-      ],
-      "conversations": [
-        "0ed87950c09f",
-        "869b0358527c",
-        "24a34a5c5d81",
-        "19650068bf60",
-        "e6a150037955"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie",
-        "alimentation"
-      ]
-    },
-    "Votre": {
-      "type": "entity",
-      "connections": [
-        "Quel",
-        "Pierre",
-        "Artificielle",
-        "Python",
-        "LLM",
-        "Intelligence",
-        "Vous",
-        "Microsoft",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Sarah",
-        "Chen",
-        "Fais-moi",
-        "Django",
-        "Raouf"
-      ],
-      "conversations": [
-        "927f226bb84c",
-        "24a34a5c5d81",
-        "e6a150037955"
-      ],
-      "topics": [
-        "travail",
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Bruce": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Matthew": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Micali": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Microsoft": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre",
-        "PyTorch",
-        "TensorFlow",
-        "Peux-tu"
-      ],
-      "conversations": [
-        "869b0358527c",
-        "24a34a5c5d81",
-        "190f14c82396"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Marlinspike": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Coursera": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Moxie": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Chen": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre"
-      ],
-      "conversations": [
-        "869b0358527c",
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "II\"": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Cryptography": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Blogs": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "YouTube": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Code": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "LLM": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre",
-        "PyTorch",
-        "TensorFlow",
-        "Peux-tu"
-      ],
-      "conversations": [
-        "869b0358527c",
-        "24a34a5c5d81",
-        "190f14c82396"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Schneier": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "PyCrypto": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Sarah": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Artificielle",
-        "Intelligence",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Votre"
-      ],
-      "conversations": [
-        "869b0358527c",
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Goldreich": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Green": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Oded": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Modern": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Cryptography\"": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Livres": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Channels": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Cela",
-        "Stanford",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Cela": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Stanford",
-        "Silvio",
-        "Academy\"",
-        "Étant",
-        "Cependant",
-        "Enfin",
-        "PyTorch",
-        "TensorFlow",
-        "Peux-tu"
-      ],
-      "conversations": [
-        "869b0358527c",
-        "7732c333fc71",
-        "190f14c82396"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Stanford": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Silvio",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Silvio": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Academy\""
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Academy\"": {
-      "type": "entity",
-      "connections": [
-        "Les",
-        "Bruce",
-        "Matthew",
-        "Micali",
-        "Microsoft",
-        "Marlinspike",
-        "Coursera",
-        "Moxie",
-        "Chen",
-        "II\"",
-        "Cryptography",
-        "Blogs",
-        "YouTube",
-        "Code",
-        "LLM",
-        "Schneier",
-        "Bonjour",
-        "PyCrypto",
-        "Sarah",
-        "Goldreich",
-        "Green",
-        "Oded",
-        "Modern",
-        "Python",
-        "Vous",
-        "Cryptography\"",
-        "Livres",
-        "Channels",
-        "Cela",
-        "Stanford",
-        "Silvio"
-      ],
-      "conversations": [
-        "869b0358527c"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Étant": {
-      "type": "entity",
-      "connections": [
-        "Cela",
-        "Cependant",
-        "Enfin"
-      ],
-      "conversations": [
-        "7732c333fc71"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Cependant": {
-      "type": "entity",
-      "connections": [
-        "Cela",
-        "Étant",
-        "Enfin",
-        "Dois-je",
-        "PyTorch",
-        "Django",
-        "TensorFlow",
-        "Python"
-      ],
-      "conversations": [
-        "7732c333fc71",
-        "612890daff95"
-      ],
-      "topics": [
-        "programmation",
-        "technologie",
-        "travail"
-      ]
-    },
-    "Enfin": {
-      "type": "entity",
-      "connections": [
-        "Cela",
-        "Étant",
-        "Cependant",
-        "Dois-je",
-        "PyTorch",
-        "Django",
-        "TensorFlow",
-        "Python"
-      ],
-      "conversations": [
-        "7732c333fc71",
-        "612890daff95"
-      ],
-      "topics": [
-        "programmation",
-        "technologie",
-        "travail"
-      ]
-    },
-    "Artificielle": {
-      "type": "entity",
-      "connections": [
-        "Python",
-        "LLM",
-        "Intelligence",
-        "Vous",
-        "Microsoft",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Sarah",
-        "Chen",
-        "Votre"
-      ],
-      "conversations": [
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Intelligence": {
-      "type": "entity",
-      "connections": [
-        "Artificielle",
-        "Python",
-        "LLM",
-        "Vous",
-        "Microsoft",
-        "Models)",
-        "Rappelle-moi",
-        "Large",
-        "Sarah",
-        "Chen",
-        "Votre"
-      ],
-      "conversations": [
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Models)": {
-      "type": "entity",
-      "connections": [
-        "Artificielle",
-        "Python",
-        "LLM",
-        "Intelligence",
-        "Vous",
-        "Microsoft",
-        "Rappelle-moi",
-        "Large",
-        "Sarah",
-        "Chen",
-        "Votre"
-      ],
-      "conversations": [
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Rappelle-moi": {
-      "type": "entity",
-      "connections": [
-        "Artificielle",
-        "Python",
-        "LLM",
-        "Intelligence",
-        "Vous",
-        "Microsoft",
-        "Models)",
-        "Large",
-        "Sarah",
-        "Chen",
-        "Votre"
-      ],
-      "conversations": [
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Large": {
-      "type": "entity",
-      "connections": [
-        "Artificielle",
-        "Python",
-        "LLM",
-        "Intelligence",
-        "Vous",
-        "Microsoft",
-        "Models)",
-        "Rappelle-moi",
-        "Sarah",
-        "Chen",
-        "Votre"
-      ],
-      "conversations": [
-        "24a34a5c5d81"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Salut": {
-      "type": "entity",
-      "connections": [
-        "Bonjour"
-      ],
-      "conversations": [
-        "f2c580e0bafb"
-      ],
-      "topics": []
-    },
-    "Mon": {
-      "type": "entity",
-      "connections": [
-        "Dupont",
-        "Ravi",
-        "Jean",
-        "Google",
-        "J'adore",
-        "Ton",
-        "Bonjour",
-        "Django",
-        "Raouf"
-      ],
-      "conversations": [
-        "393b1c310b3a",
-        "0427ec471138"
-      ],
-      "topics": [
-        "travail"
-      ]
-    },
-    "Dupont": {
-      "type": "entity",
-      "connections": [
-        "Mon",
-        "Ravi",
-        "Jean",
-        "Google"
-      ],
-      "conversations": [
-        "393b1c310b3a"
-      ],
-      "topics": []
-    },
-    "Jean": {
-      "type": "entity",
-      "connections": [
-        "Mon",
-        "Dupont",
-        "Ravi",
-        "Google"
-      ],
-      "conversations": [
-        "393b1c310b3a"
-      ],
-      "topics": []
-    },
-    "Noté": {
-      "type": "entity",
-      "connections": [],
-      "conversations": [
-        "c649451ff4a8"
-      ],
-      "topics": []
-    },
-    "Raouf": {
-      "type": "entity",
-      "connections": [
-        "Bonjour",
-        "Comment",
-        "Par",
-        "Python",
-        "Vous",
-        "Oui",
-        "Peux-tu",
-        "J'adore",
-        "Ton",
-        "Django",
-        "Mon",
-        "Fais-moi",
-        "Votre"
-      ],
-      "conversations": [
-        "19650068bf60",
-        "38223222e7e2",
-        "0427ec471138",
-        "e6a150037955"
-      ],
-      "topics": [
-        "programmation",
-        "alimentation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Par": {
-      "type": "entity",
-      "connections": [
-        "Bonjour",
-        "Comment",
-        "Raouf",
-        "Python",
-        "Vous"
-      ],
-      "conversations": [
-        "19650068bf60"
-      ],
-      "topics": [
-        "programmation",
-        "alimentation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "NumPy": {
-      "type": "entity",
-      "connections": [
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Wikipédia": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Rossum": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Voici": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Bien": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Wikipedia": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "TensorFlow",
-        "Guido",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Guido": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "SciPy",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "SciPy": {
-      "type": "entity",
-      "connections": [
-        "NumPy",
-        "Peux-tu",
-        "PyTorch",
-        "Wikipédia",
-        "Rossum",
-        "Voici",
-        "Bien",
-        "Wikipedia",
-        "TensorFlow",
-        "Guido",
-        "Python"
-      ],
-      "conversations": [
-        "053e9bf81233"
-      ],
-      "topics": [
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Ton": {
-      "type": "entity",
-      "connections": [
-        "J'adore",
-        "Bonjour",
-        "Django",
-        "Raouf",
-        "Mon"
-      ],
-      "conversations": [
-        "0427ec471138"
-      ],
-      "topics": [
-        "travail"
-      ]
-    },
-    "Django": {
-      "type": "entity",
-      "connections": [
-        "J'adore",
-        "Ton",
-        "Bonjour",
-        "Raouf",
-        "Mon",
-        "Dois-je",
-        "PyTorch",
-        "Enfin",
-        "TensorFlow",
-        "Cependant",
-        "Python",
-        "Fais-moi",
-        "Votre",
-        "Vous"
-      ],
-      "conversations": [
-        "0427ec471138",
-        "612890daff95",
-        "e6a150037955"
-      ],
-      "topics": [
-        "travail",
-        "programmation",
-        "technologie"
-      ]
-    },
-    "Dois-je": {
-      "type": "entity",
-      "connections": [
-        "PyTorch",
-        "Enfin",
-        "Django",
-        "TensorFlow",
-        "Cependant",
-        "Python"
-      ],
-      "conversations": [
-        "612890daff95"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
-        "technologie"
-      ]
-    },
-    "Fais-moi": {
-      "type": "entity",
-      "connections": [
-        "Votre",
-        "Django",
-        "Raouf",
-        "Python",
-        "Vous"
-      ],
-      "conversations": [
-        "e6a150037955"
-      ],
-      "topics": [
-        "programmation",
-        "travail"
-      ]
-    },
-    "Invente-moi": {
-      "type": "entity",
-      "connections": [
-        "Python"
-      ],
-      "conversations": [
-        "335e882b65eb"
-      ],
-      "topics": [
-        "programmation",
-        "travail",
         "technologie"
       ]
     }
@@ -2925,5 +1237,5 @@
   "memory_importance_scores": {},
   "access_patterns": {},
   "temporal_decay_factors": {},
-  "last_updated": "2025-06-30T20:24:06.444435"
+  "last_updated": "2025-06-30T22:52:59.673627"
 }
