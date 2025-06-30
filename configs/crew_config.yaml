@@ -1,0 +1,29 @@
+# crew_config.yaml
+
+agents:
+  - name: agent_chercheur
+    description: "Collecte des informations à partir de diverses sources (web, API, documents)"
+  - name: agent_analyste
+    description: "Analyse les données collectées pour en extraire des insights pertinents"
+  - name: agent_redacteur
+    description: "Génère des résumés ou des rapports basés sur les analyses"
+  - name: agent_planificateur
+    description: "Organise les tâches et gère le flux de travail entre les agents"
+
+tools:
+  - name: web_search
+    description: "Module de scraping web et recherches Google"
+  - name: vector_db
+    description: "Gestion de la base vectorielle avec Qdrant/FAISS"
+  - name: doc_parser
+    description: "Extraction d'informations à partir de documents PDF, CSV, JSON"
+  - name: api_clients
+    description: "Clients API pour OpenAI, HuggingFace, etc."
+  - name: ollama
+    description: "Utilisation de modèles locaux pour des réponses rapides et sécurisées"
+
+parameters:
+  # Ajouter les paramètres de configuration nécessaires
+  # Paramètres utilisateur
+  use_local_llm: true
+  local_llm_model: models/mistral-7b-instruct-v0.2.Q4_K_M/mistral-7b-instruct-v0.2.Q4_K_M.gguf 
