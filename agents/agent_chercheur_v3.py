@@ -139,27 +139,45 @@ class AgentChercheurV3:
     def _search_wikipedia_api(self, query: str) -> List[str]:
         """Wikipedia API - Gratuit et très fiable."""
         try:
-            # API de recherche Wikipedia
-            search_url = "https://fr.wikipedia.org/api/rest_v1/page/search"
-            params = {"q": query, "limit": 3}
+            # Endpoint de l'API MediaWiki, plus stable
+            search_url = "https://fr.wikipedia.org/w/api.php"
             
-            resp = self.session.get(search_url, params=params, timeout=10)
-            resp.raise_for_status()
-            search_data = resp.json()
+            # 1. Recherche pour obtenir les titres de pages
+            search_params = {
+                "action": "query",
+                "list": "search",
+                "srsearch": query,
+                "format": "json",
+                "srlimit": 3
+            }
+            resp_search = self.session.get(search_url, params=search_params, timeout=10)
+            resp_search.raise_for_status()
+            search_data = resp_search.json()
             
+            titles = [item['title'] for item in search_data.get('query', {}).get('search', [])]
+            if not titles:
+                return []
+
+            # 2. Récupération des extraits pour les pages trouvées
+            extract_params = {
+                "action": "query",
+                "prop": "extracts",
+                "exintro": True,
+                "explaintext": True,
+                "titles": "|".join(titles),
+                "format": "json"
+            }
+            resp_extract = self.session.get(search_url, params=extract_params, timeout=10)
+            resp_extract.raise_for_status()
+            extract_data = resp_extract.json()
+
             results = []
-            for page in search_data.get("pages", [])[:3]:
-                title = page.get("title")
-                description = page.get("description", "")
-                extract = page.get("extract", "")
-                
-                if title:
-                    content = f"Wikipedia - {title}"
-                    if description:
-                        content += f": {description}"
-                    if extract:
-                        content += f" - {extract[:150]}..."
-                    results.append(content)
+            pages = extract_data.get('query', {}).get('pages', {})
+            for page_id, page_data in pages.items():
+                title = page_data.get("title")
+                extract = page_data.get("extract", "")
+                if title and extract:
+                    results.append(f"Wikipedia - {title}: {extract[:300]}...")
             
             return results
         except Exception as e:

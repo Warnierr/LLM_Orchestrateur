@@ -8,6 +8,8 @@ except ImportError:
     _OPENAI = False
 
 import os
+import json
+from typing import Dict, Any
 
 class AgentRedacteur:
     def __init__(self):
@@ -17,51 +19,50 @@ class AgentRedacteur:
             openai.base_url = os.getenv("OPENAI_API_BASE", "http://localhost:8080/v1")
             self.model = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
 
-    def generate_report(self, insights, history=None, reasoning=None, profile=None):
-        """Génère un rapport synthétique en utilisant le LLM, avec chaîne de raisonnement et historique."""
-        # Génération du rapport brut
-        print("Génération du rapport brut...")
-        report = self.format_report(insights)
+    def generate_report(self, context_data: Dict[str, Any], reasoning: str, profile: Dict[str, Any]):
+        """Génère un rapport synthétique en utilisant le contexte complet."""
+        
+        query = context_data.get('query', '')
+        search_results = context_data.get('search_results', {})
+        history = context_data.get('conversation_history', [])
+        
         # Préparation du prompt enrichi
-        messages = []
-        # Message système initial avec raisonnement attendu
-        system_content = "Tu es Nina, une assistante qui produit des rapports synthétiques et clairs."
-        if reasoning:
-            system_content += f" Raisonnement prévu: {reasoning}."
-        if profile:
-            for k, v in profile.items():
-                system_content += f" Préférence {k}: {v}."
-        messages.append({"role": "system", "content": system_content})
-        # Inclure l'historique si fourni
-        if history:
-            for entry in history:
-                query = entry.get("query", "")
-                resp = entry.get("response", "")
-                if query:
-                    messages.append({"role": "user", "content": query})
-                if resp:
-                    messages.append({"role": "assistant", "content": resp})
-        # Ajouter le rapport brut comme nouvelle demande
-        messages.append({"role": "user", "content": report})
+        prompt = f"""Tu es Nina, une assistante IA. Ta mission est de fournir une réponse complète et pertinente à la requête de l'utilisateur.
 
-        # Si openai dispo, demander au LLM de reformater / résumer
-        if _OPENAI:
-            try:
-                completion = openai.chat.completions.create(
-                    model=self.model,
-                    messages=messages,
-                    temperature=0.2,
-                )
-                if completion and completion.choices:
-                    content = completion.choices[0].message.content or ""
-                    return content.strip()
-            except Exception as exc:
-                print(f"[AgentRedacteur] Erreur appel LLM : {exc}")
-                # fallback rapport brut
-                return report
+Pour cela, tu disposes de plusieurs sources d'information :
+1.  **La requête actuelle de l'utilisateur.**
+2.  **Les résultats d'une recherche web.**
+3.  **L'historique récent de la conversation.**
 
-        # Pas de LLM ou échec, renvoyer rapport brut
-        return report
+Analyse toutes ces informations pour formuler la meilleure réponse possible. Si l'historique contient des informations personnelles pertinentes (comme des préférences), utilise-les pour personnaliser ta réponse.
+
+---
+### CONTEXTE ###
+
+**Requête Actuelle :**
+{query}
+
+**Résultats de la Recherche Web :**
+{json.dumps(search_results, indent=2, ensure_ascii=False)}
+
+**Historique de Conversation :**
+{json.dumps(history, indent=2, ensure_ascii=False)}
+
+---
+### TA RÉPONSE SYNTHÉTISÉE ###
+"""
+
+        # Appel au LLM local pour la synthèse finale
+        try:
+            from agents.agent_llm_local import AgentLLMLocal
+            local_llm = AgentLLMLocal()
+            if local_llm.use_ollama:
+                return local_llm.generate(prompt)
+            else:
+                return "Le service de synthèse est actuellement indisponible."
+        except Exception as e:
+            print(f"[AgentRedacteur] Erreur lors de la synthèse finale : {e}")
+            return "Désolé, une erreur est survenue lors de la génération de la réponse."
 
     def format_report(self, insights):
         # Implémenter la logique pour formater le rapport

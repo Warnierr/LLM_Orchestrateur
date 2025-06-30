@@ -9,6 +9,10 @@ agents:
     description: "Génère des résumés ou des rapports basés sur les analyses"
   - name: agent_planificateur
     description: "Organise les tâches et gère le flux de travail entre les agents"
+  - name: agent_wikipedia
+    description: "Recherche factuelle via WikipediaAPIWrapper"
+  - name: agent_grok
+    description: "Requêtes vers x.ai Grok"
 
 tools:
   - name: web_search
