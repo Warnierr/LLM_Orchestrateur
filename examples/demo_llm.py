@@ -1,5 +1,9 @@
 import sys
 import os
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement depuis le fichier .env
+load_dotenv()
 
 # Configuration du path pour exécution depuis examples/
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

@@ -29,6 +29,7 @@ class TaskType(Enum):
     """Types de tâches que Nina peut traiter."""
     RECHERCHE_INFORMATION = "recherche_information"
     RAISONNEMENT_PUR = "raisonnement_pur"
+    CONVERSATION_SIMPLE = "conversation_simple"
     ACTUALITES = "actualites"
     ANALYSE = "analyse"
     PLANIFICATION = "planification"
@@ -116,21 +117,27 @@ class AgentNina:
             print("[AgentNina] LLM local non disponible, fallback sur une recherche par défaut.")
             return TaskPlan(TaskType.RECHERCHE_INFORMATION, TaskComplexity.MODERATE, ["chercheur", "analyste"], 5.0, 1, "Fallback: LLM local indisponible.")
 
-        # Prompt pour le LLM routeur avec technique Few-Shot
-        routing_prompt = f"""Tu es un routeur intelligent. Ton unique rôle est de classifier la requête de l'utilisateur en UNE seule des catégories suivantes : 'raisonnement_pur' ou 'recherche_information'.
+        # Prompt pour le LLM routeur avec des exemples encore plus variés
+        routing_prompt = f"""Tu es un routeur intelligent. Classifie la requête de l'utilisateur en UNE des catégories suivantes : 'raisonnement_pur', 'recherche_information', ou 'conversation_simple'.
 
 ### EXEMPLES ###
-Requête : "Quelle est la distance entre la Terre et la Lune ?"
+Requête : "Quelle est la capitale de la France ?"
 Catégorie : recherche_information
 
-Requête : "Si j'ai 3 pommes et que j'en mange une, combien m'en reste-t-il ?"
+Requête : "Si un train part à 8h et roule à 100km/h, où sera-t-il à 10h ?"
 Catégorie : raisonnement_pur
 
-Requête : "Explique-moi le fonctionnement d'un moteur à combustion."
+Requête : "Bonjour, comment vas-tu ?"
+Catégorie : conversation_simple
+
+Requête : "Quelle est la suite logique : 2, 4, 6, 8, ?"
+Catégorie : raisonnement_pur
+
+Requête : "Peux-tu me parler de la théorie de la relativité ?"
 Catégorie : recherche_information
 
-Requête : "Marie a 3 fois l'âge de son frère. Dans 5 ans, elle aura 2 fois son âge. Quel âge ont-ils ?"
-Catégorie : raisonnement_pur
+Requête : "Merci beaucoup !"
+Catégorie : conversation_simple
 ### FIN DES EXEMPLES ###
 
 Maintenant, classifie la requête suivante. Ne réponds PAS à la question. Retourne UNIQUEMENT la catégorie choisie.
@@ -140,14 +147,14 @@ Requête de l'utilisateur : "{query}"
 Catégorie:"""
 
         try:
-            # Appel au LLM pour obtenir la classification
             response_text = self.local_llm.generate(routing_prompt).strip().lower()
             
-            # Nettoyage de la réponse pour être sûr d'avoir que la catégorie
             if 'raisonnement_pur' in response_text:
                 best_type = TaskType.RAISONNEMENT_PUR
+            elif 'conversation_simple' in response_text:
+                best_type = TaskType.CONVERSATION_SIMPLE
             else:
-                best_type = TaskType.RECHERCHE_INFORMATION # Catégorie par défaut
+                best_type = TaskType.RECHERCHE_INFORMATION
 
         except Exception as e:
             print(f"[AgentNina] Erreur du LLM routeur: {e}. Fallback sur recherche.")
@@ -162,6 +169,15 @@ Catégorie:"""
                 estimated_time=3.0,
                 priority=1,
                 reasoning="La requête est un problème de raisonnement pur, appel direct au LLM."
+            )
+        elif best_type == TaskType.CONVERSATION_SIMPLE:
+            return TaskPlan(
+                task_type=TaskType.CONVERSATION_SIMPLE,
+                complexity=TaskComplexity.SIMPLE,
+                agents_needed=["local_llm"],
+                estimated_time=1.0,
+                priority=1,
+                reasoning="La requête est une conversation simple, réponse directe."
             )
         else: # RECHERCHE_INFORMATION
             return TaskPlan(
@@ -253,6 +269,13 @@ Raisonnement étape par étape :
             except Exception as e:
                 response = f"J'ai rencontré une erreur en essayant de résoudre le problème : {e}"
         
+        elif plan.task_type == TaskType.CONVERSATION_SIMPLE:
+            if not self.local_llm:
+                return "Bonjour ! Comment puis-je vous aider ?"
+            
+            conversation_prompt = f"Tu es Nina, une assistante IA amicale et serviable. Réponds de manière naturelle à l'utilisateur.\n\nUtilisateur: {query}\nNina:"
+            response = self.local_llm.generate(conversation_prompt)
+
         else: # RECHERCHE_INFORMATION
             # Créer un résumé de l'historique pour maintenir le contexte
             conversation_summary = self._summarize_history()

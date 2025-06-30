@@ -2,18 +2,35 @@ from typing import Dict, Any, List
 import sys
 import os
 import json
+import re # Importer le module pour les expressions régulières
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from agents.agent_openrouter import AgentOpenRouter
+from duckduckgo_search import DDGS
 
 # --- Définition des Outils ---
 class WebSearchTool:
-    """Un outil qui simule une recherche sur le web."""
+    """Un outil qui effectue une véritable recherche sur le web avec DuckDuckGo."""
     def run(self, query: str) -> str:
-        """Exécute la recherche et retourne un résultat simulé."""
+        """Exécute la recherche et retourne les 3 premiers résultats."""
         print(f"--- TOOL: WebSearchTool, QUERY: '{query}' ---")
-        return f"Résultats de recherche simulés pour '{query}': [Donnée 1, Donnée 2, Donnée 3]"
+        try:
+            with DDGS() as ddgs:
+                results = [r for r in ddgs.text(query, max_results=3)]
+                if not results:
+                    return "Aucun résultat trouvé."
+                
+                # Formatter les résultats pour le LLM
+                formatted_results = "\n".join([
+                    f"- Titre: {res.get('title', 'N/A')}\n"
+                    f"  Extrait: {res.get('body', 'N/A')}\n"
+                    f"  Source: {res.get('href', 'N/A')}"
+                    for res in results
+                ])
+                return formatted_results
+        except Exception as e:
+            return f"Erreur lors de la recherche web: {e}"
 
 # --- Orchestrateur ReAct ---
 class Orchestrator:
@@ -31,22 +48,23 @@ class Orchestrator:
     def _build_react_prompt(self, task: str, history: List[str]) -> List[Dict[str, str]]:
         """Construit le prompt pour le LLM en incluant l'historique de la boucle ReAct."""
         system_prompt = f"""
-        Vous êtes un assistant capable de décomposer une tâche complexe en utilisant une boucle Pensée-Action-Observation.
+        Vous êtes un assistant IA. Votre unique but est de retourner un bloc de code JSON valide sans aucun autre texte, en-tête ou explication.
+        Le JSON doit contenir une 'pensée' et soit une 'action' pour utiliser un outil, soit 'finish' avec la réponse finale.
 
-        Votre but est d'accomplir la tâche demandée par l'utilisateur en utilisant les outils à votre disposition.
+        Exemple de format d'action:
+        ```json
+        {{"thought": "Je dois chercher des informations.", "action": {{"tool_name": "web_search", "query": "requête"}}}}
+        ```
 
-        A chaque étape, vous devez retourner un bloc JSON contenant soit une 'pensée' et une 'action', soit une 'pensée' et une 'réponse finale'.
-
-        1.  **Action**: Pour utiliser un outil. Le format doit être:
-            `{{"thought": "votre réflexion sur ce que vous allez faire", "action": {{"tool_name": "nom_de_l_outil", "query": "votre_requête"}}}}`
-
-        2.  **Réponse Finale**: Lorsque vous avez assez d'information pour répondre. Le format doit être:
-            `{{"thought": "votre réflexion finale", "finish": "votre_réponse_complète_à_l_utilisateur"}}`
+        Exemple de format de réponse finale:
+        ```json
+        {{"thought": "J'ai toutes les informations.", "finish": "Ceci est la réponse finale."}}
+        ```
 
         **Outils disponibles**:
-        - `web_search`: Utile pour trouver des informations récentes sur un sujet. Prend un `query` en paramètre.
+        - `web_search`: Utile pour trouver des informations récentes sur un sujet.
 
-        Commencez !
+        Ne répondez RIEN d'autre que le bloc JSON.
         """
         messages = [{"role": "system", "content": system_prompt}]
         history_str = "\n".join(history)
@@ -65,10 +83,21 @@ class Orchestrator:
 
             # 1. Reason
             messages = self._build_react_prompt(task, history)
-            llm_response_str = self.llm.invoke("anthropic/claude-3-haiku", messages, temperature=0.1)
+            llm_response_str = self.llm.invoke("anthropic/claude-3-haiku", messages, temperature=0.0) # Température à 0 pour moins de créativité
+            print(f"DEBUG: Réponse brute du LLM:\n---\n{llm_response_str}\n---")
+
+            # Utiliser une regex pour extraire le bloc JSON de manière plus robuste
+            json_match = re.search(r'\{.*\}', llm_response_str, re.DOTALL)
             
+            if not json_match:
+                print(f"Erreur: Aucun bloc JSON trouvé dans la réponse du LLM.")
+                history.append(f"Observation: Erreur de formatage, aucun JSON détecté.")
+                continue
+
+            json_str = json_match.group(0)
+
             try:
-                llm_response_json = json.loads(llm_response_str)
+                llm_response_json = json.loads(json_str)
                 thought = llm_response_json.get("thought", "(Pas de pensée formulée)")
                 print(f"Pensée: {thought}")
                 history.append(f"Pensée: {thought}")
