@@ -30,17 +30,25 @@ L'objectif de cette phase est de centraliser l'accès à l'intelligence et de je
     4.  La boucle continue jusqu'à la résolution du problème.
 - **Bénéfice** : Rend Nina capable de gérer des tâches complexes en plusieurs étapes, de s'auto-corriger et de montrer sa logique.
 
-**Priorité #3 : Amélioration Active de la Mémoire**
-- **Action** : Mettre en place la boucle d'apprentissage : `Rappeler -> Agir -> Consolider`.
-- **Rappeler** : Avant chaque action, Nina consulte ses mémoires SQL et Vectorielle pour contextualiser la demande.
-- **Consolider** : Après chaque tâche complexe, un agent extrait les "faits" importants du résultat et les sauvegarde dans la mémoire SQL et Vectorielle (via la nouvelle table `facts`).
+**Priorité #3 : Amélioration Active de la Mémoire (Auto-Apprentissage)**
+- **Action** : Mettre en place la boucle d'apprentissage `Rappeler -> Agir -> Consolider`.
+    - **Rappeler** : Avant chaque action, Nina consulte ses mémoires SQL et Vectorielle pour contextualiser la demande.
+    - **Consolider** : Après chaque tâche complexe, une dernière étape sera ajoutée à la boucle ReAct. Un LLM analysera la conversation pour en extraire les "faits" essentiels. Chaque fait sera ensuite sauvegardé dans la base SQL (table `facts`) et vectorisé dans Qdrant.
 - **Bénéfice** : Nina apprend continuellement de ses interactions et de ses recherches.
 
 ---
 
 ### Phase 3 : Capacités Avancées et Autonomie
 
-Une fois la Phase 2 terminée, nous nous concentrerons sur l'enrichissement de l'intelligence de Nina.
+Une fois la Phase 2 terminée, nous nous concentrerons sur l'enrichissement de la boîte à outils et de l'intelligence de Nina.
+
+**Priorité #1 : Enrichissement de la Boîte à Outils**
+- **Action** : Implémenter des outils fondamentaux.
+    - **`FileSystemTool`**: Pour lire et écrire des fichiers locaux dans un environnement sécurisé. **(Prochaine étape)**
+    - **`MemoryTool`**: Pour permettre à Nina d'interroger activement sa propre mémoire (SQL/Qdrant).
+    - **`WikipediaTool`**: Pour des recherches factuelles et structurées.
+    - **`PythonREPLTool`**: Pour exécuter du code Python (calculs, manipulation de données) dans un sandbox.
+- **Bénéfice** : Augmente drastiquement le champ d'action de Nina.
 
 - **Knowledge Graph d'Entités** :
     - **Action** : Mettre en place une base de données graphe (ex: Neo4j) et un processus pour extraire les entités (personnes, lieux, projets) et leurs relations à partir des faits appris.

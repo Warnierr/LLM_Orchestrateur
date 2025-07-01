@@ -1,0 +1,5 @@
+Je m'appelle Raouf. Je suis ton constructeur.
+Comment je m'appelle ?
+Fais des recherches sur le web à propos de la dernière version d'Android et écris un résumé dans un fichier nommé "android_summary.txt".
+Maintenant, lis le contenu du fichier "android_summary.txt".
+exit 

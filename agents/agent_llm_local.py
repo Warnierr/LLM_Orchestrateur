@@ -1,45 +1,41 @@
-import requests
-import json
 import os
 from typing import List, Dict, Any
 
-OLLAMA_BASE_URL = "http://localhost:11434"
-DEFAULT_MODEL = "mixtral:instruct"
+# Ce chemin devra être adapté à l'endroit où vous stockez vos modèles dans WSL
+VLLM_MODEL_PATH = "/mnt/c/Users/User/Desktop/Projets/Orchestrateur LLM/nina_project/models/mixtral-8x7b-instruct-v0.1.Q4_K_M.gguf"
+
+try:
+    from vllm import LLM, SamplingParams
+    VLLM_AVAILABLE = True
+except ImportError:
+    VLLM_AVAILABLE = False
 
 class AgentLLMLocal:
-    def __init__(self, model: str = DEFAULT_MODEL, base_url: str = OLLAMA_BASE_URL):
-        self.model = model
-        self.base_url = base_url
-        self.use_ollama = self._check_ollama_connection()
-
-    def _check_ollama_connection(self) -> bool:
-        try:
-            response = requests.get(f"{self.base_url}/api/tags", timeout=5)
-            response.raise_for_status()
-            print(f"[AgentLLMLocal] ✅ Ollama connecté sur {self.base_url}")
-            return True
-        except requests.exceptions.RequestException as e:
-            print(f"[AgentLLMLocal] ⚠️ Ollama non accessible: {e}")
-            return False
+    def __init__(self, model: str = VLLM_MODEL_PATH):
+        self.model_path = model
+        self.llm_client = None
+        
+        if VLLM_AVAILABLE:
+            if os.path.exists(self.model_path):
+                print("[AgentLLMLocal] ✅ Initialisation du moteur VLLM...")
+                self.sampling_params = SamplingParams(temperature=0.2, top_p=0.95, max_tokens=512)
+                self.llm_client = LLM(model=self.model_path)
+                print("[AgentLLMLocal] Moteur VLLM initialisé avec succès.")
+            else:
+                print(f"[AgentLLMLocal] ⚠️ ERREUR : Le fichier du modèle est introuvable à l'emplacement : {self.model_path}")
+                print("Veuillez télécharger le modèle et/ou corriger le chemin dans agent_llm_local.py")
+        else:
+            print("[AgentLLMLocal] ⚠️ ERREUR : La librairie VLLM n'est pas installée. Veuillez lancer le script setup_wsl.sh")
 
     def generate(self, prompt: str) -> str:
-        if not self.use_ollama:
-            return "Le service de LLM local n'est pas disponible."
+        if self.llm_client:
+            try:
+                outputs = self.llm_client.generate(prompt, self.sampling_params)
+                if outputs:
+                    return outputs[0].outputs[0].text
+                return "Aucune réponse générée par VLLM."
+            except Exception as e:
+                print(f"[AgentLLMLocal] Erreur lors de la génération VLLM : {e}")
+                return "Une erreur est survenue lors de l'appel au moteur VLLM."
         
-        try:
-            response = requests.post(
-                f"{self.base_url}/api/generate",
-                json={
-                    "model": self.model,
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {"temperature": 0.2, "top_p": 0.9}
-                },
-                timeout=120
-            )
-            response.raise_for_status()
-            result = response.json()
-            return result.get("response", "Aucune réponse du modèle.")
-        except requests.exceptions.RequestException as e:
-            print(f"[AgentLLMLocal] Erreur lors de la génération Ollama: {e}")
-            return "Une erreur est survenue lors de la communication avec le LLM local." 
+        return "Le moteur VLLM n'est pas initialisé correctement." 

@@ -32,7 +32,7 @@ def main():
         return
 
     # --- Tâche à accomplir ---
-    task = "Fais une recherche sur les dernières nouvelles concernant le modèle AI 'Claude 3.5 Sonnet' et résume les points clés."
+    task = "Fais une recherche sur le web à propos de 'GPT-4o', puis écris un résumé de tes découvertes dans un fichier nommé 'gpt4o_summary.txt'."
 
     print("="*50)
     print(f"Tâche à accomplir: {task}")

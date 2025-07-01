@@ -10,6 +10,43 @@ from agents.agent_openrouter import AgentOpenRouter
 from duckduckgo_search import DDGS
 
 # --- Définition des Outils ---
+
+class FileSystemTool:
+    """Outil pour lire et écrire dans des fichiers locaux dans un 'workspace' sécurisé."""
+    def __init__(self, workspace_dir: str = "workspace"):
+        self.workspace_dir = os.path.abspath(workspace_dir)
+        if not os.path.exists(self.workspace_dir):
+            os.makedirs(self.workspace_dir)
+
+    def _get_safe_path(self, filename: str) -> str:
+        """Valide et retourne un chemin de fichier sécurisé à l'intérieur du workspace."""
+        # Empêche le path traversal (ex: ../../.../fichier_sensible)
+        if ".." in filename or filename.startswith("/"):
+            raise ValueError("Accès non autorisé au fichier.")
+        
+        return os.path.join(self.workspace_dir, filename)
+
+    def read_file(self, filename: str) -> str:
+        """Lit le contenu d'un fichier dans le workspace."""
+        try:
+            safe_path = self._get_safe_path(filename)
+            with open(safe_path, 'r', encoding='utf-8') as f:
+                return f.read()
+        except FileNotFoundError:
+            return f"Erreur: Le fichier '{filename}' n'a pas été trouvé."
+        except Exception as e:
+            return f"Erreur lors de la lecture du fichier: {e}"
+
+    def write_file(self, filename: str, content: str) -> str:
+        """Écrit du contenu dans un fichier du workspace."""
+        try:
+            safe_path = self._get_safe_path(filename)
+            with open(safe_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            return f"Le fichier '{filename}' a été écrit avec succès."
+        except Exception as e:
+            return f"Erreur lors de l'écriture du fichier: {e}"
+
 class WebSearchTool:
     """Un outil qui effectue une véritable recherche sur le web avec DuckDuckGo."""
     def run(self, query: str) -> str:
@@ -42,7 +79,9 @@ class Orchestrator:
         """Initialise l'orchestrateur avec le moteur LLM et les outils."""
         self.llm = AgentOpenRouter(api_key=openrouter_api_key)
         self.tools = {
-            "web_search": WebSearchTool()
+            "web_search": WebSearchTool().run,
+            "read_file": FileSystemTool().read_file,
+            "write_file": FileSystemTool().write_file,
         }
 
     def _build_react_prompt(self, task: str, history: List[str]) -> List[Dict[str, str]]:
@@ -55,6 +94,10 @@ class Orchestrator:
         ```json
         {{"thought": "Je dois chercher des informations.", "action": {{"tool_name": "web_search", "query": "requête"}}}}
         ```
+        ou pour écrire un fichier:
+        ```json
+        {{"thought": "Je vais sauvegarder ce texte.", "action": {{"tool_name": "write_file", "filename": "nom_du_fichier.txt", "content": "contenu du fichier"}}}}
+        ```
 
         Exemple de format de réponse finale:
         ```json
@@ -62,7 +105,9 @@ class Orchestrator:
         ```
 
         **Outils disponibles**:
-        - `web_search`: Utile pour trouver des informations récentes sur un sujet.
+        - `web_search`: Utile pour trouver des informations récentes sur un sujet. Prend un `query` en paramètre.
+        - `read_file`: Pour lire le contenu d'un fichier. Prend un `filename` en paramètre.
+        - `write_file`: Pour écrire dans un fichier. Prend un `filename` et `content` en paramètres.
 
         Ne répondez RIEN d'autre que le bloc JSON.
         """
@@ -106,10 +151,13 @@ class Orchestrator:
                 if "action" in llm_response_json:
                     action = llm_response_json["action"]
                     tool_name = action.get("tool_name")
-                    query = action.get("query")
                     
                     if tool_name in self.tools:
-                        observation = self.tools[tool_name].run(query)
+                        # Préparer les arguments pour l'outil
+                        tool_args = action.copy()
+                        del tool_args["tool_name"]
+                        
+                        observation = self.tools[tool_name](**tool_args)
                         history.append(f"Observation: {observation}")
                         print(f"Observation: {observation}")
                     else:

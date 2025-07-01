@@ -1,0 +1,1 @@
+GPT-4o ('o' pour 'omni') est un nouveau modèle de langage développé par OpenAI. Il est capable d'accepter en entrée une combinaison de texte, audio, image et vidéo, et de générer en sortie du texte, de l'audio et des images. Il s'agit d'une étape importante vers une interaction plus naturelle entre l'humain et l'ordinateur.
